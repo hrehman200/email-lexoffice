@@ -1,0 +1,12 @@
+{
+    "name": "haris/lexoffice",
+    "authors": [
+        {
+            "name": "Haris ur Rehman",
+            "email": "hrehman200@gmail.com"
+        }
+    ],
+    "require": {
+        "particlebits/imap": "^2.2"
+    }
+}
