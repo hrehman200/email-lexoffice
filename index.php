@@ -1,4 +1,7 @@
 <?php
+
+use Laminas\Mail\Storage;
+
 require_once 'vendor/autoload.php';
 
 define('IMAP_HOST', 'xxx');
@@ -18,6 +21,11 @@ $mailbox = new \Pb\Imap\Mailbox(
     ]
 );
 $messageIds = $mailbox->search('UNSEEN');
+
+if(count($messageIds) == 0) {
+    echo "No emails found \n";
+    exit();
+}
 
 foreach ($messageIds as $messageId) {
     $message = $mailbox->getMessage($messageId);
@@ -54,6 +62,13 @@ foreach ($messageIds as $messageId) {
         $response = json_decode($response, true);
         if(array_key_exists('id', $response)) {
             unlink(ATTACHMENT_FOLDER . $attachment->filepath);
+
+            try {
+                $mailbox->addFlags([$messageId], [Storage::FLAG_DELETED]);
+                $mailbox->expunge();
+            } catch (Exception $e) {
+                echo $e->getMessage() . "\n";
+            }
         }
     }    
 }
