@@ -11,6 +11,7 @@ class Welcome extends CI_Controller
 	public function index($video_id = null)
 	{
 		print_r($video_id);
-		$this->load->view('welcome_message');
+		$html = $this->load->view('auth/create_user', [], true);
+		$this->load->view('layout', ['content' => $html]);
 	}
 }
