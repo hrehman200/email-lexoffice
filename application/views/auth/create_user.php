@@ -20,43 +20,46 @@
                                     <form method="post" action="<?= site_url('auth/create_user') ?>">
                                           <div class="mb-3">
                                                 <label class="form-label">Name</label>
-                                                <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" />
+                                                <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Company</label>
-                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="Enter your company name" />
+                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="Enter your company name" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Address</label>
-                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Enter your address" />
+                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Enter your address" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">City</label>
-                                                <input class="form-control form-control-lg" type="text" name="city" placeholder="Enter your city" />
+                                                <input class="form-control form-control-lg" type="text" name="city" placeholder="Enter your city" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">State</label>
-                                                <input class="form-control form-control-lg" type="text" name="state" placeholder="Enter your state" />
+                                                <input class="form-control form-control-lg" type="text" name="state" placeholder="Enter your state" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Zip</label>
-                                                <input class="form-control form-control-lg" type="text" name="zip" placeholder="Enter your postal code" />
+                                                <input class="form-control form-control-lg" type="text" name="zip" placeholder="Enter your postal code" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Country</label>
-                                                <input class="form-control form-control-lg" type="text" name="country" placeholder="Enter your country" />
+                                                <input class="form-control form-control-lg" type="text" name="country" placeholder="Enter your country" value="" />
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Email</label>
-                                                <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" />
+                                                <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" value="" />
+
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" />
+                                                <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" value="" />
+                                                
                                           </div>
                                           <div class="mb-3">
                                                 <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" type="password" name="password_confirm" placeholder="Enter password again" />
+                                                <input class="form-control form-control-lg" type="password" name="password_confirm" placeholder="Enter password again" value="" />
+                                                
                                           </div>
                                           <div class="text-center mt-3">
                                                 <button type="submit" class="btn btn-lg btn-primary">Sign up</button>

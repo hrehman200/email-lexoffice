@@ -7,6 +7,39 @@ class Mail extends CI_Controller{
     function  __construct(){
         parent::__construct();
     }
+    function index(){
+        $this->load->library('email');
+        $config = array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_timeout' => 30,
+            'smtp_port' => 465,
+            'smtp_user' => 'sohailafridy99@gmail.com',
+            'smtp_pass' => 'xlyzzvsgqefsapfz',
+            'charset' => 'utf-8',
+            'mailtype' => 'html'
+        );
+
+
+$this->email->initialize($config);
+
+
+
+
+        $this->email->initialize($config);
+
+        $this->email->from('sohail.it99@gmail.com', 'Your Name');
+        $this->email->to('sohailkust397@gmail.com');
+
+        $this->email->subject('demo subject Test');
+        $this->email->message('demo msg');
+
+        if($this->email->send()){
+            echo "done";
+        }else{
+            print_r($this->email->print_debugger());
+        }
+    }
    
     function send(){
         /* Load PHPMailer library */
