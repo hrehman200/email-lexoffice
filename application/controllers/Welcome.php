@@ -66,8 +66,6 @@ class Welcome extends CI_Controller
         }
         else
         {
-        	// unset($_SESSION['error']);
-        	exit;
           	$verification_code = bin2hex(random_bytes(15));
         	$data = array(
         		'name' => $this->input->post('name'),
@@ -83,9 +81,50 @@ class Welcome extends CI_Controller
         		'status' => 0,
 
         	);
+        	$email_id = $this->input->post('email');
+        	$user_name = $this->input->post('name');
              if ($this->UserModel->insertData($data)) {
-                     echo 'success';
-                }else{
+
+                	$this->load->library('PHPMailer_Lib');
+
+			        $mail = $this->PHPMailer_Lib->load();
+			       
+			        /* SMTP configuration */
+			        $mail->isSMTP();
+			        $mail->Host     = 'smtp.gmail.com';
+			        $mail->SMTPAuth = true;
+			        $mail->Username = 'sohailafridy99@gmail.com';
+			        $mail->Password = 'xlyzzvsgqefsapfz';
+			        $mail->SMTPSecure = 'tls';
+			        $mail->Port     = 587;
+			       
+			        $mail->setFrom('sohailafridy99@gmail.com', 'CodexWorld');
+			        // $mail->addReplyTo('info@example.com', 'CodexWorld');
+			       
+			        /* Add a recipient */
+			        $mail->addAddress($email_id);
+			       
+			      
+			       
+			        /* Email subject */
+			        $mail->Subject = 'Account Activation';
+			       
+			        /* Set email format to HTML */
+			        $mail->isHTML(true);
+			       
+			        /* Email body content */
+			        $mailContent = "Hi,".$user_name." ";
+			        $mail->Body = $mailContent;
+			       
+			        /* Send email */
+			        if(!$mail->send()){
+			            echo 'Mail could not be sent.';
+			            echo 'Mailer Error: ' . $mail->ErrorInfo;
+			        }else{
+			            echo 'Mail has been sent';
+			        }    
+
+			    }else{
                     echo 'have a prob';
                 }   
 

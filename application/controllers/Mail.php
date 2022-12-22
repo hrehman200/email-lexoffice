@@ -8,25 +8,20 @@ class Mail extends CI_Controller{
         parent::__construct();
     }
     function index(){
+        
+
         $this->load->library('email');
-        $config = array(
-            'protocol' => 'smtp',
-            'smtp_host' => 'ssl://smtp.gmail.com',
-            'smtp_timeout' => 30,
-            'smtp_port' => 465,
-            'smtp_user' => 'sohailafridy99@gmail.com',
-            'smtp_pass' => 'xlyzzvsgqefsapfz',
-            'charset' => 'utf-8',
-            'mailtype' => 'html'
-        );
-
-
-$this->email->initialize($config);
-
-
-
-
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.gmail.com';
+        $config['smtp_user'] = 'sohailafridy99@gmail.com';
+        $config['smtp_pass'] = 'oiiockwealavuwui';
+        $config['smtp_port'] = 25;
         $this->email->initialize($config);
+        $this->email->set_newline("\r\n");
+
+
+
 
         $this->email->from('sohail.it99@gmail.com', 'Your Name');
         $this->email->to('sohailkust397@gmail.com');
