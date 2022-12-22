@@ -37,8 +37,7 @@ class Signup extends CI_Controller
         }
         else
         {
-        	
-        	$verification_code = "demo pass";
+          echo $verification_code = bin2hex(random_bytes(15));
         	$data = array(
         		'name' => $this->input->post('name'),
         		'company' => $this->input->post('company'),

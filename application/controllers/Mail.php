@@ -43,7 +43,7 @@ $this->email->initialize($config);
    
     function send(){
         /* Load PHPMailer library */
-        $this->load->library('Phpmailer_lib');
+        $this->load->library('phpmailer_lib');
        
         /* PHPMailer object */
         $mail = $this->Phpmailer_lib->load();
@@ -54,8 +54,8 @@ $this->email->initialize($config);
         $mail->SMTPAuth = true;
         $mail->Username = 'sohailafridy99@gmail.com';
         $mail->Password = 'xlyzzvsgqefsapfz';
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port     = 465;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port     = 587;
        
         $mail->setFrom('sohailafridy99@gmail.com', 'CodexWorld');
         // $mail->addReplyTo('info@example.com', 'CodexWorld');
