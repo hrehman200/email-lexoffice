@@ -21,18 +21,48 @@ class Welcome extends CI_Controller
 		$html = $this->load->view('auth/login', [], true);
 		$this->load->view('layout', ['content' => $html]);
 	}
+	public function dashboard($video_id = null)
+	{
+		print_r($video_id);
+		$html = $this->load->view('dashboard', [], true);
+		$this->load->view('layout', ['content' => $html]);
+	}
 
 	public function signin()
-	{	$this->load->library('form_validation');
+	{	
+		$this->load->model('UserModel');
+
+		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');            
         $this->form_validation->set_rules('password', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE){
-               print_r(validation_errors());
+               $_SESSION['login_error'] = true;
+               $this->loginView();
         }
         else
         {
-        	//done
+        	$email = $this->input->post('email');
+        	$password = $this->input->post('password');
+        	$data = array('email' => $email, 'password' => $password);
+        	$res = $this->UserModel->checkSignin($data);
+        	if ($res) {
+        		$status = $res->status;
+        		$name   = $res->name;
+        		$id     = $res->id;
+        		if ($status == 1) {
+        			$_SESSION['userId'] = $userId;
+        			$_SESSION['name'] = $name;
+        			$this->dashboard();
+        		}else{
+        			$_SESSION['account_not_active'] = "Failed! Your account is not active";
+        			$this->loginView();
+        		}
+        		
+        	}else{
+        		$_SESSION['no_record_found'] = "Failed! Please enter correct detail";
+        		$this->loginView();
+        	}
         }
 	}
 
@@ -66,7 +96,7 @@ class Welcome extends CI_Controller
         }
         else
         {
-          	$verification_code = bin2hex(random_bytes(15));
+          	$token = bin2hex(random_bytes(15));
         	$data = array(
         		'name' => $this->input->post('name'),
         		'company' => $this->input->post('company'),
@@ -77,59 +107,83 @@ class Welcome extends CI_Controller
         		'country' => $this->input->post('country'),
         		'email' => $this->input->post('email'),
         		'password' => $this->input->post('password'),
-        		'verification_code' => $verification_code,
+        		'verification_code' => $token,
         		'status' => 0,
 
         	);
         	$email_id = $this->input->post('email');
         	$user_name = $this->input->post('name');
              if ($this->UserModel->insertData($data)) {
+			        $this->load->library('email');
+			        $config = array(
+					    'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+					    'smtp_host' => 'smtp.gmail.com', 
+					    'smtp_port' => 465,
+					    'smtp_user' => 'no-reply@example.com',
+					    'smtp_pass' => '12345!',
+					    'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
+					    'mailtype' => 'text', //plaintext 'text' mails or 'html'
+					    'smtp_timeout' => '4', //in seconds
+					    'charset' => 'iso-8859-1',
+					    'wordwrap' => TRUE
+					);
+                	   
+			        $this->email->initialize($config);
 
-                	$this->load->library('PHPMailer_Lib');
+					$this->email->from('your@example.com', 'Your Name');
+					$this->email->to($email_id);
 
-			        $mail = $this->PHPMailer_Lib->load();
-			       
-			        /* SMTP configuration */
-			        $mail->isSMTP();
-			        $mail->Host     = 'smtp.gmail.com';
-			        $mail->SMTPAuth = true;
-			        $mail->Username = 'sohailafridy99@gmail.com';
-			        $mail->Password = 'xlyzzvsgqefsapfz';
-			        $mail->SMTPSecure = 'tls';
-			        $mail->Port     = 587;
-			       
-			        $mail->setFrom('sohailafridy99@gmail.com', 'CodexWorld');
-			        // $mail->addReplyTo('info@example.com', 'CodexWorld');
-			       
-			        /* Add a recipient */
-			        $mail->addAddress($email_id);
-			       
-			      
-			       
-			        /* Email subject */
-			        $mail->Subject = 'Account Activation';
-			       
-			        /* Set email format to HTML */
-			        $mail->isHTML(true);
-			       
-			        /* Email body content */
-			        $mailContent = "Hi,".$user_name." ";
-			        $mail->Body = $mailContent;
-			       
-			        /* Send email */
-			        if(!$mail->send()){
-			            echo 'Mail could not be sent.';
-			            echo 'Mailer Error: ' . $mail->ErrorInfo;
-			        }else{
-			            echo 'Mail has been sent';
-			        }    
+					$this->email->subject('Account Activation');
+					$this->email->message("Hi,".$user_name."click here to activate your account http://localhost/email-lexoffice/activate/account/".$token);
 
+					if($this->email->send()){
+						$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
+						$this->loginView();
+					}
 			    }else{
                     echo 'have a prob';
                 }   
 
         }
 	}
+
+
+	public function accountActivate($token){
+		$this->load->model('UserModel');
+		$res = $this->UserModel->activateAccount($token);
+		if ($res) {
+			$_SESSION['activation_success'] = "Success! Your account is active now";
+			$this->loginView();
+		}
+	}
+
+
+	public function lexDetail(){
+		$this->load->model('UserModel');
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('lexapikey', 'LexApiKey', 'required');            
+        $this->form_validation->set_rules('lex_email', 'LexEmail', 'required|valid_email');
+
+        if ($this->form_validation->run() == FALSE){
+               $_SESSION['lex_error'] = true;
+               $this->dashboard();
+        }
+        else
+        {
+        	$lexapikey = $this->input->post('lexapikey');
+			$lex_email = $this->input->post('lex_email');
+			$id = $this->input->post('userid');
+			$data = array('lex_api_key' => $lexapikey, 'lex_email' => $lex_email);
+			$res = $this->UserModel->updLexDetail($data,$id);
+			if ($res) {
+				$_SESSION['activation_success'] = "Success! Your account is active now";
+				$this->loginView();
+			}else{
+				$_SESSION['activation_success'] = "Success! Your account is active now";
+				$this->loginView();
+			}	
+        }
+    }
 
 
 	
