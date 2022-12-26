@@ -113,7 +113,7 @@ class Welcome extends CI_Controller
 			        $mail->isHTML(true);
 			       
 			        /* Email body content */
-			        $mailContent = "Hi,".$user_name." ";
+			        $mailContent = "Hi,".$user_name." click here to activate your account ";
 			        $mail->Body = $mailContent;
 			       
 			        /* Send email */

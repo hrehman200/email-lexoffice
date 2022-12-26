@@ -12,11 +12,16 @@ class Mail extends CI_Controller{
 
         $this->load->library('email');
         $config = array();
-        $config['protocol'] = 'smtp';
-        $config['smtp_host'] = 'smtp.gmail.com';
-        $config['smtp_user'] = 'sohailafridy99@gmail.com';
-        $config['smtp_pass'] = 'oiiockwealavuwui';
-        $config['smtp_port'] = 25;
+
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "sohailafridy99@gmail.com";
+        $config['smtp_pass'] = "oiiockwealavuwui";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+
         $this->email->initialize($config);
         $this->email->set_newline("\r\n");
 
@@ -26,11 +31,11 @@ class Mail extends CI_Controller{
         $this->email->from('sohail.it99@gmail.com', 'Your Name');
         $this->email->to('sohailkust397@gmail.com');
 
-        $this->email->subject('demo subject Test');
+        $this->email->subject('Demo message local');
         $this->email->message('demo msg');
 
         if($this->email->send()){
-            echo "done";
+            echo "success";
         }else{
             print_r($this->email->print_debugger());
         }
