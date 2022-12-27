@@ -57,5 +57,7 @@ $route['auth/create_user'] = 'welcome/createUser';
 $route['auth'] = 'welcome/loginView';
 $route['auth/sigin'] = 'welcome/signin';
 $route['activate/account/'] = 'welcome/signin';
-
+$route['activate/account/(:any)'] = 'welcome/accountActivate/$1';
+$route['lex/detail'] = 'welcome/lexDetail';
+$route['dashboard'] = 'welcome/dashboard';
 

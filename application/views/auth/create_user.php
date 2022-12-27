@@ -16,11 +16,11 @@
                                     <?php if(strlen($message)) { ?>
                                           <div class="alert alert-danger"><div class="alert-message"><?=$message?></div></div>
                                     <?php } ?>
-<style type="text/css">
-      form p{
-            color: red;
-      }
-</style>
+                                    <style type="text/css">
+                                          form p{
+                                                color: red;
+                                          }
+                                    </style>
                                     <form method="post" action="<?= site_url('auth/create_user') ?>">
                                           <div class="mb-3">
                                                 <label class="form-label">Name</label>
