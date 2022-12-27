@@ -1,6 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+define('LEX_API_BASE_URL', '');
+define('IMAP_HOST', '');
+define('IMAP_USERNAME', '');
+define('IMAP_PASS', '');
+define('LEXOFFICE_API_TOKEN', '');
+define('ATTACHMENT_FOLDER', __DIR__ . '/attachments/');
+
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace

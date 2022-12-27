@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['auth/create_user'] = 'welcome/createUser';
 $route['auth'] = 'welcome/loginView';
 $route['auth/signin'] = 'welcome/signin';
+$route['auth/logout'] = 'welcome/logout';
 $route['activate/account/'] = 'welcome/signin';
 $route['activate/account/(:any)'] = 'welcome/accountActivate/$1';
 $route['lex/detail'] = 'welcome/lexDetail';

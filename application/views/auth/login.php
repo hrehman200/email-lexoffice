@@ -12,7 +12,7 @@
                         <?php 
                               if (isset($_SESSION['activation_pending'])) {
                                     ?>    
-                                    <p class="alert text-warning my-2"><?php 
+                                    <p class="alert alert-warning my-2"><?php 
                                           echo $_SESSION['activation_pending'];
                                     ?></p>
                                     <?php
@@ -20,7 +20,7 @@
                               }
                               if (isset($_SESSION['activation_success'])) {
                                     ?>    
-                                    <p class="alert text-success my-2"><?php 
+                                    <p class="alert alert-success my-2"><?php 
                                           echo $_SESSION['activation_success'];
                                     ?></p>
                                     <?php
@@ -28,7 +28,7 @@
                               }
                               if (isset($_SESSION['no_record_found'])) {
                                     ?>    
-                                    <p class="alert text-danger my-2"><?php 
+                                    <p class="alert alert-danger my-2"><?php 
                                           echo $_SESSION['no_record_found'];
                                     ?></p>
                                     <?php
@@ -36,7 +36,7 @@
                               }
                               if (isset($_SESSION['account_not_active'])) {
                                     ?>    
-                                    <p class="alert text-danger my-2"><?php 
+                                    <p class="alert alert-danger my-2"><?php 
                                           echo $_SESSION['account_not_active'];
                                     ?></p>
                                     <?php
