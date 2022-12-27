@@ -76,16 +76,16 @@ class Welcome extends CI_Controller
 
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('name', 'Name', 'required');
-        $this->form_validation->set_rules('company', 'Company', 'required');
-        $this->form_validation->set_rules('address', 'Address', 'required');
-        $this->form_validation->set_rules('city', 'City', 'required');
-        $this->form_validation->set_rules('state', 'State', 'required');
-        $this->form_validation->set_rules('zip', 'Zip', 'required');
-        $this->form_validation->set_rules('country', 'Country', 'required');
-        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');            
-        $this->form_validation->set_rules('password', 'Password', 'required');
-	 $this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
+        $this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('company', 'Company', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('address', 'Address', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('city', 'City', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('state', 'State', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('zip', 'Zip', 'required|min_length[3]|max_length[20]');
+        $this->form_validation->set_rules('country', 'Country', 'required|min_length[3]|max_length[100]');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');            
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
 
 
 
@@ -113,43 +113,40 @@ class Welcome extends CI_Controller
         	);
         	$email_id = $this->input->post('email');
         	$user_name = $this->input->post('name');
-             if ($this->UserModel->insertData($data)) { 
-             		$this->load->library('email');
-		        $config = array();
+             if ($this->UserModel->insertData($data)) {
+			        $this->load->library('email');
+			        $config = array(
+					    'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+					    'smtp_host' => 'smtp.gmail.com', 
+					    'smtp_port' => 465,
+					    'smtp_user' => 'no-reply@example.com',
+					    'smtp_pass' => '12345!',
+					    'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
+					    'mailtype' => 'text', //plaintext 'text' mails or 'html'
+					    'smtp_timeout' => '4', //in seconds
+					    'charset' => 'iso-8859-1',
+					    'wordwrap' => TRUE
+					);
+                	   
+			        $this->email->initialize($config);
 
-		        $config['protocol'] = "smtp";
-		        $config['smtp_host'] = "ssl://smtp.gmail.com";
-		        $config['smtp_port'] = "465";
-		        $config['smtp_user'] = "sohailafridy99@gmail.com";
-		        $config['smtp_pass'] = "oiiockwealavuwui";
-		        $config['charset'] = "utf-8";
-		        $config['mailtype'] = "html";
-		        $config['newline'] = "\r\n";
+					$this->email->from('your@example.com', 'Your Name');
+					$this->email->to($email_id);
 
-		        $this->email->initialize($config);
-		        $this->email->set_newline("\r\n");
+					$this->email->subject('Account Activation');
+					$this->email->message("Hi,".$user_name."click here to activate your account http://localhost/email-lexoffice/activate/account/".$token);
 
-		        $this->email->from('sohail.it99@gmail.com', 'Your Name');
-		        $this->email->to($email_id);
-
-			$this->email->subject('Account Activation');
-			$this->email->message("Hi,".$user_name."click here to activate your account http://localhost/ci3-email/activate/account/".$token);
-
-			if($this->email->send()){
-				$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
-				$this->loginView();
-			}
-		}else{
+					if($this->email->send()){
+						$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
+					}
+					$this->loginView();
+			    }else{
                     echo 'have a prob';
                 }   
 
         }
 	}
 
-	public function logout(){
-		session_destroy();
-		$this->index();
-	}
 
 	public function accountActivate($token){
 		$this->load->model('UserModel');
@@ -174,18 +171,17 @@ class Welcome extends CI_Controller
         else
         {
         	$lexapikey = $this->input->post('lexapikey');
-		$lex_email = $this->input->post('lex_email');
-		$id = $this->input->post('userid');
-
-		$data = array('lex_api_key' => $lexapikey, 'lex_email' => $lex_email);
-		$res = $this->UserModel->updLexDetail($data,$id);
-		if ($res) {
-			$_SESSION['lex_detail_update_success'] = "Success! Lex detail updated successfully";
-			$this->dashboard();
-		}else{
-			$_SESSION['lex_detail_update_error'] = "Failed! Your have some problem";
-			$this->dashboard();
-		}	
+			$lex_email = $this->input->post('lex_email');
+			$id = $this->input->post('userid');
+			$data = array('lex_api_key' => $lexapikey, 'lex_email' => $lex_email);
+			$res = $this->UserModel->updLexDetail($data,$id);
+			if ($res) {
+				$_SESSION['activation_success'] = "Success! Your account is active now";
+				$this->loginView();
+			}else{
+				$_SESSION['activation_success'] = "Success! Your account is active now";
+				$this->loginView();
+			}	
         }
     }
 

@@ -8,29 +8,11 @@
                               Signin by entering your information.
                         </p>
                   </div>
-                <style type="text/css">
-                      .alert-danger{
-                            opacity: 1.0!important;
-                            background: red!important;
-                            font-weight: 800;
-                      }
-                      .alert-warning{
-                            opacity: 1.0!important;
-                            background: #F68B1F!important;
-                            font-weight: 800;
-                            color: white!important;
-                      } 
-                      .alert-success{
-                            opacity: 1.0!important;
-                            background: #4BB543!important;
-                            font-weight: 800;
-                            color: white!important;
-                      }
-                </style>  
+                  
                         <?php 
                               if (isset($_SESSION['activation_pending'])) {
                                     ?>    
-                                    <p class="alert alert-warning text-white my-2"><?php 
+                                    <p class="alert text-warning my-2"><?php 
                                           echo $_SESSION['activation_pending'];
                                     ?></p>
                                     <?php
@@ -38,7 +20,7 @@
                               }
                               if (isset($_SESSION['activation_success'])) {
                                     ?>    
-                                    <p class="alert alert-success text-white my-2"><?php 
+                                    <p class="alert text-success my-2"><?php 
                                           echo $_SESSION['activation_success'];
                                     ?></p>
                                     <?php
@@ -46,7 +28,7 @@
                               }
                               if (isset($_SESSION['no_record_found'])) {
                                     ?>    
-                                    <p class="alert alert-danger text-white my-2"><?php 
+                                    <p class="alert text-danger my-2"><?php 
                                           echo $_SESSION['no_record_found'];
                                     ?></p>
                                     <?php
@@ -54,7 +36,7 @@
                               }
                               if (isset($_SESSION['account_not_active'])) {
                                     ?>    
-                                    <p class="alert alert-danger text-white my-2"><?php 
+                                    <p class="alert text-danger my-2"><?php 
                                           echo $_SESSION['account_not_active'];
                                     ?></p>
                                     <?php
@@ -70,7 +52,7 @@
                                           <div class="alert alert-danger"><div class="alert-message"><?=$message?></div></div>
                                     <?php } ?>
 
-                                    <form method="post" action="<?= site_url('auth/sigin') ?>">
+                                    <form method="post" action="<?= site_url('auth/signin') ?>">
                                           
                                           <div class="mb-3">
                                                 <label class="form-label">Email</label>
