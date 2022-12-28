@@ -40,9 +40,8 @@
                                     }
                                     if (isset($_SESSION['lex_detail_update_error'])) {
                                     ?>
-                                          <p class="alert alert-success py-2"> <?= $_SESSION['lex_detail_update_error'] ?> </p>
+                                          <p class="alert alert-danger py-2"> <?= $_SESSION['lex_detail_update_error'] ?> </p>
                                     <?php
-                                          unset($_SESSION['lex_detail_update_error']);
                                     }
                                     ?>
 

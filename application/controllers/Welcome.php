@@ -8,6 +8,13 @@ require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
 class Welcome extends CI_Controller
 {
 
+	public  function __construct()
+	{
+		parent::__construct();
+
+		$this->load->model('UserModel');
+	}
+
 	public function index()
 	{
 		$html = $this->load->view('auth/create_user', [], true);
@@ -21,14 +28,13 @@ class Welcome extends CI_Controller
 	}
 	public function dashboard()
 	{
-		$user = $this->db->get_where('users', ['id' => $_SESSION['userId']])->result_array()[0];
+		$user = $this->UserModel->get($_SESSION['userId']);
 		$html = $this->load->view('dashboard', ['user' => $user], true);
 		$this->load->view('layout', ['content' => $html]);
 	}
 
 	public function signin()
 	{
-		$this->load->model('UserModel');
 
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -70,7 +76,6 @@ class Welcome extends CI_Controller
 
 	public function createUser()
 	{
-		$this->load->model('UserModel');
 		$this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
@@ -143,7 +148,6 @@ class Welcome extends CI_Controller
 
 	public function accountActivate($token)
 	{
-		$this->load->model('UserModel');
 		$res = $this->UserModel->activateAccount($token);
 		if ($res) {
 			$_SESSION['activation_success'] = "Success! Your account is active now";
@@ -154,10 +158,8 @@ class Welcome extends CI_Controller
 
 	public function lexDetail()
 	{
-		$this->load->model('UserModel');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('lexapikey', 'LexApiKey', 'required');
-		//$this->form_validation->set_rules('lex_email', 'LexEmail', 'required|valid_email');
 
 		if ($this->form_validation->run() == FALSE) {
 			$_SESSION['lex_error'] = true;
@@ -166,11 +168,22 @@ class Welcome extends CI_Controller
 			$lex_api_key = $this->input->post('lexapikey');
 			$verified = $this->UserModel->checkLexApiKey($lex_api_key);
 
-			//$lex_email = $this->input->post('lex_email');
 			if ($verified) {
+				$user = $this->UserModel->get($_SESSION['userId']);
+
 				$data = array('lex_api_key' => $lex_api_key);
+				if(!$user['lex_email']) {
+					$lex_email = sprintf('%s@email-invoice.de', random_string('alnum', 6));
+					$data['lex_email'] = $lex_email;
+				}
+
+				// create customer on client's lex
+				$this->UserModel->createCustomerOnLex($_SESSION['userId']);
+
 				$res = $this->UserModel->updLexDetail($data, $_SESSION['userId']);
 				$_SESSION['lex_detail_update_success'] = 'Lex API Key added';
+			} else {
+				$this->session->set_flashdata('lex_detail_update_error', 'Lex API key not valid');
 			}
 			redirect("dashboard");
 		}
