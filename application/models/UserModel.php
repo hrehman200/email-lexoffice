@@ -158,7 +158,7 @@ class UserModel extends CI_Model
             //     "lastName" => $last_name,
             // ],
             "company" => [
-                "name" => "Testfirma",
+                "name" => $user['company'],
                 "contactPersons" => [
                     [
                         //"salutation"=> "Herr",

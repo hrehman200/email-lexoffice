@@ -43,7 +43,7 @@ class Welcome extends CI_Controller
 		} else {
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
-			$data = array('email' => $email, 'password' => $password);
+			$data = array('email' => $email, 'password' => sha1($password));
 			$res = $this->UserModel->checkSignin($data);
 			if ($res) {
 				$status = $res->status;
@@ -67,6 +67,7 @@ class Welcome extends CI_Controller
 	public function logout()
 	{
 		unset($_SESSION);
+		session_destroy();
 		$this->loginView();
 	}
 
@@ -102,7 +103,7 @@ class Welcome extends CI_Controller
 				'zip' => $this->input->post('zip'),
 				'country' => $this->input->post('country'),
 				'email' => $this->input->post('email'),
-				'password' => $this->input->post('password'),
+				'password' => sha1($this->input->post('password')),
 				'verification_code' => $token,
 				'status' => 0,
 				'trader' => $this->input->post('trader'),
@@ -110,29 +111,16 @@ class Welcome extends CI_Controller
 			$email_id = $this->input->post('email');
 			$user_name = $this->input->post('name');
 			if ($this->UserModel->insertData($data)) {
-				$this->load->library('email');
-				$config = array(
-					'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
-					'smtp_host' => 'smtp.gmail.com',
-					'smtp_port' => 465,
-					'smtp_user' => 'no-reply@example.com',
-					'smtp_pass' => '12345!',
-					'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
-					'mailtype' => 'text', //plaintext 'text' mails or 'html'
-					'smtp_timeout' => '4', //in seconds
-					'charset' => 'iso-8859-1',
-					'wordwrap' => TRUE
-				);
 
-				$this->email->initialize($config);
+				$to = $email_id;
+				$subject = 'Email-Invoice.de Account Activation';
+				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to activate your account <br><br> %s",  $user_name, base_url().'activate/account/'.$token);
 
-				$this->email->from('your@example.com', 'Your Name');
-				$this->email->to($email_id);
+				$headers  = "From: " . strip_tags('no-reply@email-invoice.de') . "\r\n";
+				$headers .= "MIME-Version: 1.0\r\n";
+				$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-				$this->email->subject('Account Activation');
-				$this->email->message("Hi," . $user_name . "click here to activate your account http://localhost/email-lexoffice/activate/account/" . $token);
-
-				if ($this->email->send()) {
+				if (mail($to, $subject, $body, $headers)) {
 					$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
 				}
 				$this->loginView();
