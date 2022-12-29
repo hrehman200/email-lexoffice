@@ -65,6 +65,18 @@ class UserModel extends CI_Model
         return $user;
     }
 
+    function getAll()
+    {
+        $users = $this->db->get_where('users', ['lex_api_key != ' => null])->result_array();
+        return $users;
+    }
+
+    function getByLexEmail($lex_email)
+    {
+        $user = $this->db->get_where('users', ['lex_email' => $lex_email])->result_array()[0];
+        return $user;
+    }
+
     function makeRequest($end_point, $api_key = LEXOFFICE_API_TOKEN, $params = [], $post = false)
     {
         $curl = curl_init();

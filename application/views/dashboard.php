@@ -1,27 +1,6 @@
 <div class="row">
       <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
             <div class="d-table-cell align-middle">
-                  <style type="text/css">
-                        .alert-danger {
-                              opacity: 1.0 !important;
-                              background: red !important;
-                              font-weight: 800;
-                        }
-
-                        .alert-warning {
-                              opacity: 1.0 !important;
-                              background: #F68B1F !important;
-                              font-weight: 800;
-                              color: white !important;
-                        }
-
-                        .alert-success {
-                              opacity: 1.0 !important;
-                              background: #4BB543 !important;
-                              font-weight: 800;
-                              color: white !important;
-                        }
-                  </style>
                   <div class="card">
                         <div class="card-body">
                               <div class="m-sm-4">
@@ -48,7 +27,7 @@
                                     <form method="post" action="<?= site_url('lex/detail') ?>">
 
                                           <div class="mb-3">
-                                                <label class="form-label">Lex Api Key</label>
+                                                <label class="form-label">LexOffice API Key</label>
                                                 <input class="form-control form-control-lg" type="text" name="lexapikey" placeholder="Enter your lex api key" value="<?= $user['lex_api_key'] ?>" />
                                                 <?php
                                                 if ($_SESSION['lex_error']) {
@@ -58,11 +37,11 @@
 
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Lex Email</label>
+                                                <label class="form-label">LexOffice Email</label>
                                                 <br>
                                                 <label><b><?= $user['lex_email'] ?></b></label>
                                                 <br>
-                                                <small>This is the email that you will share with your vendors.</small>
+                                                <small>This is the email that you will share with your suppliers in order to get invoices directly to your LexOffice dashboard.</small>
                                                 <?php $id = $_SESSION['userId']; ?>
                                                 <input type="hidden" name="userid" value="<?= $id ?>">
                                           </div>

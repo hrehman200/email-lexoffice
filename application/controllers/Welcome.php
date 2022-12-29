@@ -2,9 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-require_once dirname(dirname(__DIR__)) . '/vendor/autoload.php';
-
-
 class Welcome extends CI_Controller
 {
 
@@ -108,7 +105,7 @@ class Welcome extends CI_Controller
 				'password' => $this->input->post('password'),
 				'verification_code' => $token,
 				'status' => 0,
-
+				'trader' => $this->input->post('trader'),
 			);
 			$email_id = $this->input->post('email');
 			$user_name = $this->input->post('name');

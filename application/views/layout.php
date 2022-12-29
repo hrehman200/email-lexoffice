@@ -19,42 +19,42 @@
     <div class="wrapper">
 
         <?php if (isset($_SESSION['name'])) { ?>
-        <nav id="sidebar" class="sidebar js-sidebar">
-            <div class="sidebar-content js-simplebar" data-simplebar="init">
-                <div class="simplebar-wrapper" style="margin: 0px;">
-                    <div class="simplebar-height-auto-observer-wrapper">
-                        <div class="simplebar-height-auto-observer"></div>
-                    </div>
-                    <div class="simplebar-mask">
-                        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
-                            <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
-                                <div class="simplebar-content" style="padding: 0px;">
-                                    <a class="sidebar-brand" href="index.html">
-                                        <span class="align-middle">Email Invoice</span>
-                                    </a>
+            <nav id="sidebar" class="sidebar js-sidebar">
+                <div class="sidebar-content js-simplebar" data-simplebar="init">
+                    <div class="simplebar-wrapper" style="margin: 0px;">
+                        <div class="simplebar-height-auto-observer-wrapper">
+                            <div class="simplebar-height-auto-observer"></div>
+                        </div>
+                        <div class="simplebar-mask">
+                            <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
+                                    <div class="simplebar-content" style="padding: 0px;">
+                                        <a class="sidebar-brand" href="index.html">
+                                            <span class="align-middle">Email Invoice</span>
+                                        </a>
 
-                                    <ul class="sidebar-nav">
-                                        <li class="sidebar-header">
-                                            Dashboard
-                                        </li>
+                                        <ul class="sidebar-nav">
+                                            <li class="sidebar-header">
+                                                Dashboard
+                                            </li>
 
-                                        <li class="sidebar-item active">
-                                            <a class="sidebar-link" href="index.html">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle">
-                                                    <line x1="4" y1="21" x2="4" y2="14"></line>
-                                                    <line x1="4" y1="10" x2="4" y2="3"></line>
-                                                    <line x1="12" y1="21" x2="12" y2="12"></line>
-                                                    <line x1="12" y1="8" x2="12" y2="3"></line>
-                                                    <line x1="20" y1="21" x2="20" y2="16"></line>
-                                                    <line x1="20" y1="12" x2="20" y2="3"></line>
-                                                    <line x1="1" y1="14" x2="7" y2="14"></line>
-                                                    <line x1="9" y1="8" x2="15" y2="8"></line>
-                                                    <line x1="17" y1="16" x2="23" y2="16"></line>
-                                                </svg> <span class="align-middle">Settings</span>
-                                            </a>
-                                        </li>
+                                            <li class="sidebar-item active">
+                                                <a class="sidebar-link" href="index.html">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle">
+                                                        <line x1="4" y1="21" x2="4" y2="14"></line>
+                                                        <line x1="4" y1="10" x2="4" y2="3"></line>
+                                                        <line x1="12" y1="21" x2="12" y2="12"></line>
+                                                        <line x1="12" y1="8" x2="12" y2="3"></line>
+                                                        <line x1="20" y1="21" x2="20" y2="16"></line>
+                                                        <line x1="20" y1="12" x2="20" y2="3"></line>
+                                                        <line x1="1" y1="14" x2="7" y2="14"></line>
+                                                        <line x1="9" y1="8" x2="15" y2="8"></line>
+                                                        <line x1="17" y1="16" x2="23" y2="16"></line>
+                                                    </svg> <span class="align-middle">Settings</span>
+                                                </a>
+                                            </li>
 
-                                        <!-- <li class="sidebar-item">
+                                            <!-- <li class="sidebar-item">
                                             <a class="sidebar-link" href="pages-profile.html">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle">
                                                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
@@ -93,16 +93,16 @@
                                             </a>
                                         </li> -->
 
-                                        
-                                    </ul>
+
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="simplebar-placeholder" style="width: auto; height: 955px;"></div>
                     </div>
-                    <div class="simplebar-placeholder" style="width: auto; height: 955px;"></div>
                 </div>
-            </div>
-        </nav>
+            </nav>
         <?php } ?>
 
         <div class="main">
@@ -121,6 +121,26 @@
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a class="dropdown-item" href="<?= site_url('auth/logout') ?>">Log out</a>
                                 </div>
+                            </li>
+                        </ul>
+                    </div>
+                <?php } else if ($this->uri->segment(2) == 'signin') { ?>
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav navbar-align">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-none d-sm-inline-block" href="<?= site_url('auth/create_user') ?>">
+                                    <span class="text-dark">Signup</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                <?php } else { ?>
+                    <div class="navbar-collapse collapse">
+                        <ul class="navbar-nav navbar-align">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link d-none d-sm-inline-block" href="<?= site_url('auth/signin') ?>">
+                                    <span class="text-dark">Login</span>
+                                </a>
                             </li>
                         </ul>
                     </div>
