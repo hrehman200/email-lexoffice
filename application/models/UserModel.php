@@ -92,23 +92,26 @@ class UserModel extends CI_Model
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_VERBOSE => 1,
             CURLOPT_STDERR => $fp,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_2,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer ' . $api_key,
-                'Accept: application/json',
-                'Content-Type: application/json'
+                'Accept: application/json'
             ),
-            CURLOPT_AUTOREFERER => TRUE,
+            //CURLOPT_AUTOREFERER => TRUE,
             CURLOPT_SSL_VERIFYHOST => false,
             CURLOPT_SSL_VERIFYPEER => false,
         ];
 
-        if (count($params) > 0) {
+        if($end_point == 'files' && count($params) > 0) {
+            $config_arr[CURLOPT_POSTFIELDS] = $params;
+        } else if (count($params) > 0) {
             $config_arr[CURLOPT_POSTFIELDS] = json_encode($params);
+            $config_arr[CURLOPT_HTTPHEADER][] = 'Content-Type: application/json';
         }
 
         if ($post) {
-            $config_arr[CURLOPT_POST] = 1;
+            //$config_arr[CURLOPT_POST] = 1;
+            $config_arr[CURLOPT_CUSTOMREQUEST] = 'POST';
         } else {
             $config_arr[CURLOPT_CUSTOMREQUEST] = 'GET';
         }

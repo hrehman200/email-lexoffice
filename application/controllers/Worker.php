@@ -44,6 +44,11 @@ class Worker extends CI_Controller
 
 			$to_email = $message->toString;
 
+			// viHGPh@email-invoice.de <viHGPh@email-invoice.de>
+			if(strpos($to_email, ' ') !== false) {
+				$to_email = explode(' ', $to_email)[0];
+			}
+
 			$user = $this->UserModel->getByLexEmail($to_email);
 			if(!$user) {
 				log_message('error', sprintf('No user found with Lex Email %s', $to_email));
@@ -52,7 +57,7 @@ class Worker extends CI_Controller
 
 			$attachments = $message->getAttachments();
 			foreach ($attachments as $attachment) {
-
+				log_message('error', sprintf('Uploading file %s', ATTACHMENT_FOLDER . $attachment->filepath));
 				$response = $this->UserModel->makeRequest('files', $user['lex_api_key'], array('file' => new CURLFILE(ATTACHMENT_FOLDER . $attachment->filepath), 'type' => 'voucher'), true);
 
 				if (array_key_exists('id', $response)) {
