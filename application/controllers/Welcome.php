@@ -106,7 +106,7 @@ class Welcome extends CI_Controller
 				'password' => sha1($this->input->post('password')),
 				'verification_code' => $token,
 				'status' => 0,
-				'trader' => $this->input->post('trader'),
+				'trader' => $this->input->post('trader') ? $this->input->post('trader') : 0,
 			);
 			$email_id = $this->input->post('email');
 			$user_name = $this->input->post('name');
