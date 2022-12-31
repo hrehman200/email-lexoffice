@@ -144,6 +144,11 @@
                                                 <label class="form-check-label" for="flexCheckDefault">
                                                       Ich akzeptiere den Vertrag zur Auftragsdatenverarbeitung
                                                 </label>
+                                                <?php
+                                                if ($_SESSION['error']) {
+                                                      echo form_error('trader');
+                                                }
+                                                ?>
                                           </div>
 
                                           <div class="text-center mt-3">
