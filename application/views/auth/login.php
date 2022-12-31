@@ -4,9 +4,6 @@
 
                   <div class="text-center mt-4">
                         <h1 class="h2">Signin</h1>
-                        <p class="lead">
-                              Signin by entering your information.
-                        </p>
                   </div>
                   
                         <?php 
@@ -55,7 +52,7 @@
                                     <form method="post" action="<?= site_url('auth/signin') ?>">
                                           
                                           <div class="mb-3">
-                                                <label class="form-label">Email</label>
+                                                <label class="form-label">Ihre E-Maildresse</label>
                                                 <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" value="<?php if($_SESSION['login_error']){echo set_value('email');} ?>" />
                                                 <?php 
                                                       if($_SESSION['login_error']){
@@ -65,7 +62,7 @@
 
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Password</label>
+                                                <label class="form-label">Passwort</label>
                                                 <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" value="<?php if($_SESSION['login_error']){echo set_value('password');} ?>" />
                                                 <?php 
                                                       if($_SESSION['login_error']){

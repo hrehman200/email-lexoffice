@@ -3,9 +3,9 @@
             <div class="d-table-cell align-middle">
 
                   <div class="text-center mt-4">
-                        <h1 class="h2">Signup</h1>
+                        <h1 class="h2">Anmelden</h1>
                         <p class="lead">
-                              Signup by entering your information.
+                              Melden Sie sich an, indem Sie Ihre Daten eingeben.
                         </p>
                   </div>
 
@@ -25,21 +25,10 @@
                                     </style>
                                     <form method="post" action="<?= site_url('auth/create_user') ?>">
                                           <div class="mb-3">
-                                                <label class="form-label">Name</label>
-                                                <input class="form-control form-control-lg" type="text" name="name" placeholder="Enter your name" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                  echo set_value('name');
+                                                <label class="form-label">Firma</label>
+                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="company name" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                                  echo set_value('company');
                                                                                                                                                             } ?>" />
-                                                <?php
-                                                if ($_SESSION['error']) {
-                                                      echo form_error('name');
-                                                }
-                                                ?>
-                                          </div>
-                                          <div class="mb-3">
-                                                <label class="form-label">Company</label>
-                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="Enter your company name" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                              echo set_value('company');
-                                                                                                                                                                        } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('company');
@@ -47,10 +36,32 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Address</label>
-                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Enter your address" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                        echo set_value('address');
-                                                                                                                                                                  } ?>" />
+                                                <label class="form-label">Vorname</label>
+                                                <input class="form-control form-control-lg" type="text" name="name" placeholder="Vorname" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                            echo set_value('name');
+                                                                                                                                                      } ?>" />
+                                                <?php
+                                                if ($_SESSION['error']) {
+                                                      echo form_error('name');
+                                                }
+                                                ?>
+                                          </div>
+                                          <div class="mb-3">
+                                                <label class="form-label">Nachname</label>
+                                                <input class="form-control form-control-lg" type="text" name="last_name" placeholder="Nachname" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                                  echo set_value('last_name');
+                                                                                                                                                            } ?>" />
+                                                <?php
+                                                if ($_SESSION['error']) {
+                                                      echo form_error('last_name');
+                                                }
+                                                ?>
+                                          </div>
+                                          <div class="mb-3">
+                                                <label class="form-label">Adress</label>
+                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Adress" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                            echo set_value('address');
+                                                                                                                                                      } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('address');
@@ -58,10 +69,10 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">City</label>
-                                                <input class="form-control form-control-lg" type="text" name="city" placeholder="Enter your city" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                  echo set_value('city');
-                                                                                                                                                            } ?>" />
+                                                <label class="form-label">Ort</label>
+                                                <input class="form-control form-control-lg" type="text" name="city" placeholder="Ort" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                      echo set_value('city');
+                                                                                                                                                } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('city');
@@ -69,21 +80,10 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">State</label>
-                                                <input class="form-control form-control-lg" type="text" name="state" placeholder="Enter your state" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                  echo set_value('state');
-                                                                                                                                                            } ?>" />
-                                                <?php
-                                                if ($_SESSION['error']) {
-                                                      echo form_error('state');
-                                                }
-                                                ?>
-                                          </div>
-                                          <div class="mb-3">
-                                                <label class="form-label">Zip</label>
-                                                <input class="form-control form-control-lg" type="text" name="zip" placeholder="Enter your postal code" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                        echo set_value('zip');
-                                                                                                                                                                  } ?>" />
+                                                <label class="form-label">PLZ</label>
+                                                <input class="form-control form-control-lg" type="text" name="zip" placeholder="PLZ" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                      echo set_value('zip');
+                                                                                                                                                } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('zip');
@@ -91,10 +91,10 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Country</label>
-                                                <input class="form-control form-control-lg" type="text" name="country" placeholder="Enter your country" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                        echo set_value('country');
-                                                                                                                                                                  } ?>" />
+                                                <label class="form-label">Land</label>
+                                                <input class="form-control form-control-lg" type="text" name="country" placeholder="Land" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                            echo set_value('country');
+                                                                                                                                                      } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('country');
@@ -103,10 +103,10 @@
                                           </div>
 
                                           <div class="mb-3">
-                                                <label class="form-label">Email</label>
-                                                <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                  echo set_value('email');
-                                                                                                                                                            } ?>" />
+                                                <label class="form-label">Ihre E-Maildresse</label>
+                                                <input class="form-control form-control-lg" type="email" name="email" placeholder="Ihre E-Maildresse" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                                        echo set_value('email');
+                                                                                                                                                                  } ?>" />
 
                                                 <?php
                                                 if ($_SESSION['error']) {
@@ -115,10 +115,10 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Password</label>
-                                                <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                        echo set_value('password');
-                                                                                                                                                                  } ?>" />
+                                                <label class="form-label">Passwort</label>
+                                                <input class="form-control form-control-lg" type="password" name="password" placeholder="Passwort" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                                  echo set_value('password');
+                                                                                                                                                            } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('password');
@@ -127,8 +127,8 @@
 
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Confirm Password</label>
-                                                <input class="form-control form-control-lg" type="password" name="password_confirm" placeholder="Enter password again" value="<?php if ($_SESSION['error']) {
+                                                <label class="form-label">Password Bestätigung</label>
+                                                <input class="form-control form-control-lg" type="password" name="password_confirm" placeholder="Password Bestätigung" value="<?php if ($_SESSION['error']) {
                                                                                                                                                                                     echo set_value('password_confirm');
                                                                                                                                                                               } ?>" />
                                                 <?php
@@ -142,12 +142,12 @@
                                           <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="1" name="trader" id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
-                                                      Are you Trader?
+                                                      Ich akzeptiere den Vertrag zur Auftragsdatenverarbeitung
                                                 </label>
                                           </div>
 
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Sign up</button>
+                                                <button type="submit" class="btn btn-lg btn-primary">Anmelden</button>
                                           </div>
                                     </form>
                               </div>

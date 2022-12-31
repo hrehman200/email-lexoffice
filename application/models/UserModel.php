@@ -143,10 +143,8 @@ class UserModel extends CI_Model
     {
         $user = $this->get($id);
 
-        $parts = explode(' ', $user['name']);
-        $first_name = $parts[0];
-        array_shift($parts);
-        $last_name = join(' ', $parts);
+        $first_name = $user['name'];
+        $last_name = $user['last_name'];
         if($last_name == '') {
             $last_name = 'last';    // its kind of required :)
         }

@@ -82,7 +82,7 @@ class Welcome extends CI_Controller
 		$this->form_validation->set_rules('company', 'Company', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('address', 'Address', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('city', 'City', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('state', 'State', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('zip', 'Zip', 'required|min_length[3]|max_length[20]');
 		$this->form_validation->set_rules('country', 'Country', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
@@ -99,7 +99,7 @@ class Welcome extends CI_Controller
 				'company' => $this->input->post('company'),
 				'address' => $this->input->post('address'),
 				'city' => $this->input->post('city'),
-				'state' => $this->input->post('state'),
+				'last_name' => $this->input->post('last_name'),
 				'zip' => $this->input->post('zip'),
 				'country' => $this->input->post('country'),
 				'email' => $this->input->post('email'),
