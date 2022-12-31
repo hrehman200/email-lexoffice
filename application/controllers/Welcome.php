@@ -25,6 +25,9 @@ class Welcome extends CI_Controller
 	}
 	public function dashboard()
 	{
+		if(!$_SESSION['name']) {
+			redirect('auth/signin');
+		}
 		$user = $this->UserModel->get($_SESSION['userId']);
 		$html = $this->load->view('dashboard', ['user' => $user], true);
 		$this->load->view('layout', ['content' => $html]);
@@ -88,6 +91,7 @@ class Welcome extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
+		$this->form_validation->set_rules('trader', 'Trader', 'required');
 
 		if ($this->form_validation->run() == FALSE) {
 			$_SESSION['error'] = true;
@@ -116,13 +120,8 @@ class Welcome extends CI_Controller
 				$subject = 'Email-Invoice.de Account Activation';
 				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to activate your account <br><br> %s",  $user_name, base_url().'activate/account/'.$token);
 
-				$headers  = "From: " . strip_tags('no-reply@email-invoice.de') . "\r\n";
-				$headers .= "MIME-Version: 1.0\r\n";
-				$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-				if (mail($to, $subject, $body, $headers)) {
-					$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
-				}
+				$this->sendMail($to, $subject, $body);
+				$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
 				$this->loginView();
 			} else {
 				echo 'have a prob';
@@ -135,9 +134,44 @@ class Welcome extends CI_Controller
 	{
 		$res = $this->UserModel->activateAccount($token);
 		if ($res) {
-			$_SESSION['activation_success'] = "Success! Your account is active now";
-			$this->loginView();
+			$user = $this->UserModel->getByToken($token);
+			$to = 'lange@75marketing.net';
+			$subject = 'New User Activated on Email-Invoice.de';
+			$details = '<b>Name:</b> : ' . $user['name'] . ' ' . $user['last_name'] . '<br>
+			<b>Company:</b> : ' . $user['company'] . '<br>
+			<b>Email:</b> : ' . $user['email'];
+			$body = sprintf("Hi <b>Admin</b>, <br><br> A new user with following details signed up: <br><br> %s",  $details);
+			$this->sendMail($to, $subject, $body);
+
+			$_SESSION['activation_success'] = "Erfolgreich! Ihr Konto ist jetzt akti";
+			redirect('auth/signin');
 		}
+	}
+
+	private function sendMail($to, $subject, $body) {
+		$this->load->library('email');
+		$config = array(
+			'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+			'smtp_host' => IMAP_HOST,
+			'smtp_auth' => true,
+			'smtp_port' => 587,
+			'smtp_user' => IMAP_USERNAME,
+			'smtp_pass' => IMAP_PASS,
+			//'smtp_crypto' => 'ssl', //can be 'ssl' or 'tls' for example
+			'mailtype' => 'html', //plaintext 'text' mails or 'html'
+			'smtp_timeout' => '5', //in seconds
+			'charset' => 'utf-8',
+			'wordwrap' => TRUE
+		);
+
+		$this->email->initialize($config);
+
+		$this->email->from('no-reply@email-invoice.de', 'Email-Invoice Support');
+		$this->email->to($to);
+		$this->email->subject($subject);
+		$this->email->message($body);
+		$this->email->send();
+		// var_dump($this->email->print_debugger());
 	}
 
 
@@ -177,11 +211,7 @@ class Welcome extends CI_Controller
 				Regards, <br>
 				Email-Invoice.de Support",  $user['name'], $user['lex_email'], $user['lex_email']);
 
-				$headers  = "From: " . strip_tags('no-reply@email-invoice.de') . "\r\n";
-				$headers .= "MIME-Version: 1.0\r\n";
-				$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-				mail($to, $subject, $body, $headers);		
+				$this->sendMail($to, $subject, $body);	
 
 			} else {
 				$this->session->set_flashdata('lex_detail_update_error', 'Lex API key not valid');

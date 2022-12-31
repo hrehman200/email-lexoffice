@@ -36,7 +36,7 @@
                                                 ?>
 
                                           </div>
-                                          <div class="mb-3">
+                                          <div class="mb-3 <?= !$user['lex_api_key'] ? 'd-none' : ''?>">
                                                 <label class="form-label">LexOffice Email</label>
                                                 <br>
                                                 <label><b><?= $user['lex_email'] ?></b></label>

@@ -7,6 +7,7 @@ define('IMAP_USERNAME', '');
 define('IMAP_PASS', '');
 define('LEXOFFICE_API_TOKEN', '');
 define('ATTACHMENT_FOLDER', __DIR__ . '/attachments/');
+define('ADMIN_EMAIL', 'lange@75marketing.net');
 
 /*
 |--------------------------------------------------------------------------

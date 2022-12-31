@@ -29,7 +29,7 @@
                             <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
                                 <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 0px;">
-                                        <a class="sidebar-brand" href="index.html">
+                                        <a class="sidebar-brand" href="javascript:;">
                                             <span class="align-middle">Email Invoice</span>
                                         </a>
 
@@ -39,7 +39,7 @@
                                             </li>
 
                                             <li class="sidebar-item active">
-                                                <a class="sidebar-link" href="index.html">
+                                                <a class="sidebar-link" href="<?=site_url('dashboard')?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sliders align-middle">
                                                         <line x1="4" y1="21" x2="4" y2="14"></line>
                                                         <line x1="4" y1="10" x2="4" y2="3"></line>

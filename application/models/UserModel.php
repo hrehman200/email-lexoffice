@@ -77,6 +77,11 @@ class UserModel extends CI_Model
         return $user;
     }
 
+    function getByToken($token) {
+        $user = $this->db->get_where('users', ['verification_code' => $token])->result_array()[0];
+        return $user;
+    }
+
     function makeRequest($end_point, $api_key = LEXOFFICE_API_TOKEN, $params = [], $post = false)
     {
         $curl = curl_init();

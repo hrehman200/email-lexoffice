@@ -26,9 +26,9 @@
                                     <form method="post" action="<?= site_url('auth/create_user') ?>">
                                           <div class="mb-3">
                                                 <label class="form-label">Firma</label>
-                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="company name" value="<?php if ($_SESSION['error']) {
-                                                                                                                                                                  echo set_value('company');
-                                                                                                                                                            } ?>" />
+                                                <input class="form-control form-control-lg" type="text" name="company" placeholder="Firma" value="<?php if ($_SESSION['error']) {
+                                                                                                                                                            echo set_value('company');
+                                                                                                                                                      } ?>" />
                                                 <?php
                                                 if ($_SESSION['error']) {
                                                       echo form_error('company');
@@ -58,8 +58,8 @@
                                                 ?>
                                           </div>
                                           <div class="mb-3">
-                                                <label class="form-label">Adress</label>
-                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Adress" value="<?php if ($_SESSION['error']) {
+                                                <label class="form-label">Adresse</label>
+                                                <input class="form-control form-control-lg" type="text" name="address" placeholder="Adresse" value="<?php if ($_SESSION['error']) {
                                                                                                                                                             echo set_value('address');
                                                                                                                                                       } ?>" />
                                                 <?php
