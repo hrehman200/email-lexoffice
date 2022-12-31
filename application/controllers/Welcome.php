@@ -160,6 +160,7 @@ class Welcome extends CI_Controller
 				if(!$user['lex_email']) {
 					$lex_email = sprintf('%s@email-invoice.de', random_string('alnum', 6));
 					$data['lex_email'] = $lex_email;
+					$user['lex_email'] = $lex_email;
 				}
 
 				// create customer on client's lex
@@ -167,6 +168,21 @@ class Welcome extends CI_Controller
 
 				$res = $this->UserModel->updLexDetail($data, $_SESSION['userId']);
 				$_SESSION['lex_detail_update_success'] = 'Lex API Key added';
+
+				$to = $user['email'];
+				$subject = 'Email-Invoice.de LexOffice API Key Added';
+				$body = sprintf("Hi <b>%s</b>, <br><br> 
+				Your LexOffice API key has been added into our app. You can now share this email address <b>%s</b> with your suppliers.<br>
+				Any invoice that is sent by your supplier to <b>%s</b> will be uploaded by our app to your LexOffice dashboard. <br><br>
+				Regards, <br>
+				Email-Invoice.de Support",  $user['name'], $user['lex_email'], $user['lex_email']);
+
+				$headers  = "From: " . strip_tags('no-reply@email-invoice.de') . "\r\n";
+				$headers .= "MIME-Version: 1.0\r\n";
+				$headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+
+				mail($to, $subject, $body, $headers);		
+
 			} else {
 				$this->session->set_flashdata('lex_detail_update_error', 'Lex API key not valid');
 			}
