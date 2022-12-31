@@ -42,7 +42,10 @@ CREATE TABLE `users` (
   `lex_api_key` varchar(255) NOT NULL,
   `lex_email` varchar(255) NOT NULL,
   `verification_code` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL
+  `forgot_pass_code` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) NOT NULL,
+  `trader` tinyint(1) NOT NULL DEFAULT '0',
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
