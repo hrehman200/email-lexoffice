@@ -59,7 +59,7 @@
                                                 <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email" value="<?php if($_SESSION['login_error']){echo set_value('email');} ?>" />
                                                 <?php 
                                                       if($_SESSION['login_error']){
-                                                            echo form_error('email');
+                                                            echo '<div class="text-danger">' . form_error('email') . '</div>';
                                                       }
                                                  ?>
 
@@ -69,7 +69,7 @@
                                                 <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password" value="<?php if($_SESSION['login_error']){echo set_value('password');} ?>" />
                                                 <?php 
                                                       if($_SESSION['login_error']){
-                                                            echo form_error('password');
+                                                            echo '<div class="text-danger">' . form_error('password') . '</div>';
                                                       }
                                                  ?>
                                                 
