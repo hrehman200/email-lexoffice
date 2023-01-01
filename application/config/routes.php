@@ -61,4 +61,8 @@ $route['activate/account/'] = 'welcome/signin';
 $route['activate/account/(:any)'] = 'welcome/accountActivate/$1';
 $route['lex/detail'] = 'welcome/lexDetail';
 $route['dashboard'] = 'welcome/dashboard';
+$route['forgotpassword'] = 'welcome/forgotpassword';
+$route['recover/password'] = 'welcome/revoverPassword';
+$route['user/revover/password/(:any)'] = 'welcome/passwordRecoverView/$1';
+$route['update/password'] = 'welcome/updatePassword';
 

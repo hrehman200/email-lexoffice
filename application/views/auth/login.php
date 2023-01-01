@@ -39,6 +39,14 @@
                   <?php
                         unset($_SESSION['account_not_active']);
                   }
+                  if (isset($_SESSION['password_updata'])) {
+                  ?>
+                        <p class="alert alert-success my-2"><?php
+                                                            echo $_SESSION['password_updata'];
+                                                            ?></p>
+                  <?php
+                        unset($_SESSION['password_updata']);
+                  }
                   ?>
 
                   <div class="card">
@@ -77,6 +85,7 @@
                                                 ?>
 
                                           </div>
+                                          <a href="<?=base_url('forgotpassword')?>">Forgot password?</a>
                                           <div class="text-center mt-3">
                                                 <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
                                           </div>

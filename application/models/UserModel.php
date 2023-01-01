@@ -195,4 +195,49 @@ class UserModel extends CI_Model
             return false;
         }
     }
+
+
+    function check_email_exist($email)
+    {
+        $data = array('email' => $email);
+        $query = $this->db->get_where('users', $data);
+        $res =  $query->row();
+        if ($res) {
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
+    function check_token_exist($token)
+    {
+        $data = array('forgot_pass_code' => $token);
+        $query = $this->db->get_where('users', $data);
+        $res =  $query->row();
+        if ($res) {
+            return $res;
+        } else {
+            return false;
+        }
+    }
+
+    function updatePasswordRevoverCode($id,$data){
+        $this->db->where('id', $id);
+        $res = $this->db->update('users', $data);
+        if ($res) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updatePassword($id,$data){
+        $this->db->where('id', $id);
+        $res = $this->db->update('users', $data);
+        if ($res) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

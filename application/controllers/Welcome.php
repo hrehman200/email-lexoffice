@@ -219,4 +219,70 @@ class Welcome extends CI_Controller
 			redirect("dashboard");
 		}
 	}
+
+
+	public function forgotpassword(){
+		$html = $this->load->view('auth/forgotPasswrod', [], true);
+		$this->load->view('layout', ['content' => $html]);
+	}
+
+	public function revoverPasswordView(){
+		$html = $this->load->view('auth/revoverPassword', [], true);
+		$this->load->view('layout', ['content' => $html]);
+	}
+	public function revoverPassword(){
+		$email = $this->input->post('email');
+		$check_email_exist = $this->UserModel->check_email_exist($email);
+		if ($check_email_exist) {
+			$token = bin2hex(random_bytes(15));
+			$id = $check_email_exist->id;
+			$email = $check_email_exist->email;
+			$data = array('forgot_pass_code' => $token);
+			$update_pass_recover_code = $this->UserModel->updatePasswordRevoverCode($id,$data);
+			if ($update_pass_recover_code) {
+				$to = $email;
+				$subject = 'Forgot Password';
+				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to activate your account <br><br> %s",  $user_name, base_url().'user/revover/password/'.$token);
+
+				$this->sendMail($to, $subject, $body);
+			}
+		}else{
+			$_SESSION['no_email_found'] = "No email found";
+			$this->forgotpassword();
+		}
+	}
+
+
+	public function passwordRecoverView($token)
+	{
+		$res = $this->UserModel->check_token_exist($token);
+		if ($res) {
+			$id = $res->id;
+			$data['id'] = $id;
+			$html = $this->load->view('auth/recoverPassword',$data, true);
+			$this->load->view('layout', ['content' => $html]);
+		}else{
+			//no token exist
+		}
+	}
+
+	public function updatePassword(){
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('conf_pass', 'Password Confirmation', 'required|matches[password]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$_SESSION['update_pass_error'] = true;
+			$this->revoverPasswordView();
+		}else{
+			$id = $this->input->post('id');
+			$password = $this->input->post('password');
+			$data = array('password' => sha1($password));
+			$res = $this->UserModel->updatePassword($id,$data);
+			if ($res) {
+				$_SESSION['password_updata'] = "Succes! Password updated successfully";
+				$this->loginView();
+			}
+		}
+	}
 }
