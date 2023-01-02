@@ -242,9 +242,12 @@ class Welcome extends CI_Controller
 			if ($update_pass_recover_code) {
 				$to = $email;
 				$subject = 'Forgot Password';
-				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to activate your account <br><br> %s",  $user_name, base_url().'user/revover/password/'.$token);
+				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to reset your password <br><br> %s",  $user_name, base_url().'user/revover/password/'.$token);
 
 				$this->sendMail($to, $subject, $body);
+
+				$_SESSION['code_sent'] = "Password reset instructions sent to your email";
+				$this->forgotpassword();
 			}
 		}else{
 			$_SESSION['no_email_found'] = "No email found";

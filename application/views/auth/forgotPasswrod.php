@@ -6,6 +6,12 @@
                         <h1 class="h2">Recover Password</h1>
                   </div>
                   <?php 
+                        if (isset($_SESSION['code_sent'])) {
+                              ?>
+                              <p class="py-2 alert alert-success"><?=$_SESSION['code_sent']?></p>
+                              <?php
+                              unset($_SESSION['code_sent']);
+                        }
                         if (isset($_SESSION['no_email_found'])) {
                               ?>
                               <p class="py-2 alert bg-danger text-white"><?=$_SESSION['no_email_found']?></p>
