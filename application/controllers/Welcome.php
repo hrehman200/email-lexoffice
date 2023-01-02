@@ -91,7 +91,7 @@ class Welcome extends CI_Controller
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
-		$this->form_validation->set_rules('trader', 'Trader', 'required');
+		$this->form_validation->set_rules('trader', 'Trader', 'required', ['required' => 'Das Feld Auftragsdatenverarbeitung ist erforderlich']);
 
 		if ($this->form_validation->run() == FALSE) {
 			$_SESSION['error'] = true;
