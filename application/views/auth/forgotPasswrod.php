@@ -29,7 +29,7 @@
                                                 <label class="form-label">Ihre E-Maildresse</label>
                                                 <input type="email" name="email" required="" class="form-control">
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Send Mail</button>
+                                                <button type="submit" class="btn btn-lg btn-color">Send Mail</button>
                                           </div>
                                     </form>
                               </div>

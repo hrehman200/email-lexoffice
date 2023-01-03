@@ -87,7 +87,7 @@
                                           </div>
                                           <a href="<?=base_url('forgotpassword')?>">Forgot password?</a>
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Sign in</button>
+                                                <button type="submit" class="btn btn-lg btn-color">Sign in</button>
                                           </div>
                                     </form>
                               </div>
