@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- <meta content="width=device-width, initial-scale=1" name="viewport" /> -->
+    <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="<?= base_url() ?>resources/img/icons/icon-48x48.png" />
 
@@ -21,9 +21,8 @@
 
         @media screen and (max-width: 480px)
         {
-            .mob-screen{
-                width: 100%;
-                padding: 36px;
+            .mb-5 {
+                margin-bottom: 200px !important;
             }
         }
     </style>
