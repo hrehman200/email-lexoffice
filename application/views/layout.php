@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="<?= base_url() ?>resources/img/icons/icon-48x48.png" />
 
@@ -13,6 +13,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>resources/css/app.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style type="text/css">
+        .content{background-color: #ffffff!important;}
+        .btn-color{background-color: #FF0766!important; color: #ffffff!important;}
+        .signup-form input{border: 1px solid #B7B7CB;border-radius: 0px;}
+    </style>
 </head>
 
 <body>
@@ -108,7 +114,7 @@
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
                 <a class="sidebar-toggle js-sidebar-toggle">
-                    <i class="hamburger align-self-center"></i>
+                   <img src="<?=base_url('resources/img/logo.png')?>">
                 </a>
 
                 <?php if (isset($_SESSION['name'])) { ?>

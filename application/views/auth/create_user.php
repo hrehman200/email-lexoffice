@@ -1,5 +1,6 @@
+
 <div class="row">
-      <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+      <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100 mob-screen">
             <div class="d-table-cell align-middle">
 
                   <div class="text-center mt-4">
@@ -23,7 +24,7 @@
                                                 color: red;
                                           }
                                     </style>
-                                    <form method="post" action="<?= site_url('auth/create_user') ?>">
+                                    <form method="post" action="<?= site_url('auth/create_user') ?>" class="signup-form">
                                           <div class="mb-3">
                                                 <label class="form-label">Firma</label>
                                                 <input class="form-control form-control-lg" type="text" name="company" placeholder="Firma" value="<?php if ($_SESSION['error']) {
@@ -152,7 +153,7 @@
                                           </div>
 
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Anmelden</button>
+                                                <button type="submit" class="btn btn-lg btn-color">Anmelden</button>
                                           </div>
                                     </form>
                               </div>
