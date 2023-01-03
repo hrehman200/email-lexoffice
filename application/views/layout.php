@@ -134,7 +134,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
-                                <a class="nav-link d-none d-sm-inline-block" href="<?= site_url('auth/create_user') ?>">
+                                <a class="nav-link d-inline-block" href="<?= site_url('auth/create_user') ?>">
                                     <span class="text-dark">Signup</span>
                                 </a>
                             </li>
@@ -144,7 +144,7 @@
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown">
-                                <a class="nav-link d-none d-sm-inline-block" href="<?= site_url('auth/signin') ?>">
+                                <a class="nav-link d-inline-block" href="<?= site_url('auth/signin') ?>">
                                     <span class="text-dark">Login</span>
                                 </a>
                             </li>
