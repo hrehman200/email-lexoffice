@@ -18,6 +18,24 @@
         .content{background-color: #ffffff!important;}
         .btn-color{background-color: #FF0766!important; color: #ffffff!important;}
         .signup-form input{border: 1px solid #B7B7CB;border-radius: 0px;}
+        .logo_anchor{
+                width: 363px;
+        }
+        .action_btn a span{
+            color: #FF0766!important;
+            font-weight: 800!important;
+            font-family: 'Arial',Helvetica,Arial,Lucida,sans-serif;
+        }
+        .header_nav{
+            padding-bottom: 41px;
+            border: 1px solid lightgray;
+        }
+
+        .logo_anchor img{
+                height: 48px;
+                width: 202px!important;
+                margin-left: 112px;
+        }
 
         @media screen and (max-width: 480px)
         {
@@ -119,15 +137,15 @@
         <?php } ?>
 
         <div class="main">
-            <nav class="navbar navbar-expand navbar-light navbar-bg">
-                <a class="sidebar-toggle js-sidebar-toggle">
+            <nav class="navbar navbar-expand navbar-light navbar-bg header_nav">
+                <a class="sidebar-toggle js-sidebar-toggle logo_anchor">
                    <img src="<?=base_url('resources/img/logo.png')?>">
                 </a>
 
                 <?php if (isset($_SESSION['name'])) { ?>
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown action_btn">
                                 <a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown">
                                     <span class="text-dark"><?= $_SESSION['name'] ?></span>
                                 </a>
@@ -140,7 +158,7 @@
                 <?php } else if ($this->uri->segment(2) == 'signin') { ?>
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown action_btn">
                                 <a class="nav-link d-inline-block" href="<?= site_url('auth/create_user') ?>">
                                     <span class="text-dark">Signup</span>
                                 </a>
@@ -150,7 +168,7 @@
                 <?php } else { ?>
                     <div class="navbar-collapse collapse">
                         <ul class="navbar-nav navbar-align">
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown action_btn">
                                 <a class="nav-link d-inline-block" href="<?= site_url('auth/signin') ?>">
                                     <span class="text-dark">Login</span>
                                 </a>
