@@ -27,14 +27,14 @@
             font-family: 'Arial',Helvetica,Arial,Lucida,sans-serif;
         }
         .header_nav{
-            padding-bottom: 41px;
+            padding-bottom: 20px;
             border: 1px solid lightgray;
         }
 
         .logo_anchor img{
-                height: 48px;
-                width: 202px!important;
-                margin-left: 112px;
+                height: 40px; 
+                width: 202px!important; 
+                /* margin-left: 112px; */
         }
 
         @media screen and (max-width: 480px)
@@ -138,7 +138,10 @@
 
         <div class="main">
             <nav class="navbar navbar-expand navbar-light navbar-bg header_nav">
-                <a class="sidebar-toggle js-sidebar-toggle logo_anchor">
+
+                <div class="col-10 offset-1">
+
+                <a class="sidebar-toggle js-sidebar-toggle logo_anchor float-start" href="http://email-invoice.de">
                    <img src="<?=base_url('resources/img/logo.png')?>">
                 </a>
 
@@ -166,7 +169,7 @@
                         </ul>
                     </div>
                 <?php } else { ?>
-                    <div class="navbar-collapse collapse">
+                    <div class="navbar-collapse collapse float-right">
                         <ul class="navbar-nav navbar-align">
                             <li class="nav-item dropdown action_btn">
                                 <a class="nav-link d-inline-block" href="<?= site_url('auth/signin') ?>">
@@ -176,6 +179,8 @@
                         </ul>
                     </div>
                 <?php } ?>
+
+                </div>
 
             </nav>
 
