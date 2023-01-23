@@ -5,8 +5,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport" />
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com"> -->
-    <!-- <link rel="shortcut icon" href="<?= base_url() ?>resources/img/icons/icon-48x48.png" /> -->
 
     <title>Email Invoice</title>
 
@@ -111,43 +109,43 @@
                                             </li>
 
                                             <!-- <li class="sidebar-item">
-                                                                    <a class="sidebar-link" href="pages-profile.html">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle">
-                                                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                                                            <circle cx="12" cy="7" r="4"></circle>
-                                                                        </svg> <span class="align-middle">Profile</span>
-                                                                    </a>
-                                                                </li>
+                                                                                <a class="sidebar-link" href="pages-profile.html">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user align-middle">
+                                                                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                                                                        <circle cx="12" cy="7" r="4"></circle>
+                                                                                    </svg> <span class="align-middle">Profile</span>
+                                                                                </a>
+                                                                            </li>
 
-                                                                <li class="sidebar-item">
-                                                                    <a class="sidebar-link" href="pages-sign-in.html">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in align-middle">
-                                                                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-                                                                            <polyline points="10 17 15 12 10 7"></polyline>
-                                                                            <line x1="15" y1="12" x2="3" y2="12"></line>
-                                                                        </svg> <span class="align-middle">Sign In</span>
-                                                                    </a>
-                                                                </li>
+                                                                            <li class="sidebar-item">
+                                                                                <a class="sidebar-link" href="pages-sign-in.html">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-in align-middle">
+                                                                                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
+                                                                                        <polyline points="10 17 15 12 10 7"></polyline>
+                                                                                        <line x1="15" y1="12" x2="3" y2="12"></line>
+                                                                                    </svg> <span class="align-middle">Sign In</span>
+                                                                                </a>
+                                                                            </li>
 
-                                                                <li class="sidebar-item">
-                                                                    <a class="sidebar-link" href="pages-sign-up.html">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus align-middle">
-                                                                            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                                                            <circle cx="8.5" cy="7" r="4"></circle>
-                                                                            <line x1="20" y1="8" x2="20" y2="14"></line>
-                                                                            <line x1="23" y1="11" x2="17" y2="11"></line>
-                                                                        </svg> <span class="align-middle">Sign Up</span>
-                                                                    </a>
-                                                                </li>
+                                                                            <li class="sidebar-item">
+                                                                                <a class="sidebar-link" href="pages-sign-up.html">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user-plus align-middle">
+                                                                                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                                                                        <circle cx="8.5" cy="7" r="4"></circle>
+                                                                                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                                                                                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                                                                                    </svg> <span class="align-middle">Sign Up</span>
+                                                                                </a>
+                                                                            </li>
 
-                                                                <li class="sidebar-item">
-                                                                    <a class="sidebar-link" href="pages-blank.html">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book align-middle">
-                                                                            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-                                                                            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-                                                                        </svg> <span class="align-middle">Blank</span>
-                                                                    </a>
-                                                                </li> -->
+                                                                            <li class="sidebar-item">
+                                                                                <a class="sidebar-link" href="pages-blank.html">
+                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book align-middle">
+                                                                                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                                                                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                                                                    </svg> <span class="align-middle">Blank</span>
+                                                                                </a>
+                                                                            </li> -->
 
 
                                         </ul>
@@ -191,7 +189,7 @@
                                 <ul class="navbar-nav navbar-align">
                                     <li class="nav-item dropdown action_btn">
                                         <a class="nav-link d-inline-block" href="<?= site_url('auth/create_user') ?>">
-                                            <span class="text-dark">Signup</span>
+                                            <span class="text-dark">Anmelden</span>
                                         </a>
                                     </li>
                                 </ul>

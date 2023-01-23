@@ -138,9 +138,12 @@ class Welcome extends CI_Controller
 			$user = $this->UserModel->getByToken($token);
 			$to = 'lange@75marketing.net';
 			$subject = 'New User Activated on Email-Invoice.de';
-			$details = '<b>Name:</b> : ' . $user['name'] . ' ' . $user['last_name'] . '<br>
+			$details = 'Hi <b>Admin</b>,<br>
+			<p>A new user with following details signed up:</p>
+			<b>Name:</b> : ' . $user['name'] . ' ' . $user['last_name'] . '<br>
 			<b>Company:</b> : ' . $user['company'] . '<br>
-			<b>Email:</b> : ' . $user['email'];
+			<b>Email:</b> : ' . $user['email'] . '<br>
+			<b>Tariff:</b> : ' . ($user['timing'] == 1 ? 'Monthly' : 'Annual');
 			$body = sprintf("Hi <b>Admin</b>, <br><br> A new user with following details signed up: <br><br> %s", $details);
 			$this->sendMail($to, $subject, $body);
 
