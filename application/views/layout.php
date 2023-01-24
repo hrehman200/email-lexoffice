@@ -10,7 +10,6 @@
 
     <link href="<?= base_url() ?>resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>resources/css/app.css" rel="stylesheet">
-    <link href="<?= base_url() ?>resources/fonts/fonts.css" rel="stylesheet">
 
     <meta name="msapplication-TileImage"
         content="https://email-invoice.de/wp-content/uploads/cropped-EMAIL-INVOICE-Icon-512-270x270.png">
