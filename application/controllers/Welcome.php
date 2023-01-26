@@ -57,11 +57,11 @@ class Welcome extends CI_Controller
 					$_SESSION['name'] = $name;
 					$this->dashboard();
 				} else {
-					$_SESSION['account_not_active'] = "Failed! Your account is not active";
+					$_SESSION['account_not_active'] = "Fehlgeschlagen! Ihr Konto wurde nicht aktiviert";
 					$this->loginView();
 				}
 			} else {
-				$_SESSION['no_record_found'] = "Failed! Please enter correct detail";
+				$_SESSION['no_record_found'] = "Fehlgeschlagen! Bitte korrektes Detail eingeben";
 				$this->loginView();
 			}
 		}
@@ -82,16 +82,16 @@ class Welcome extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('company', 'Company', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('address', 'Address', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('city', 'City', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('last_name', 'Last Name', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('zip', 'Zip', 'required|min_length[3]|max_length[20]');
-		$this->form_validation->set_rules('country', 'Country', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('password', 'Password', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('password_confirm', 'Password Confirmation', 'required|matches[password]');
-		$this->form_validation->set_rules('trader', 'Trader', 'required', ['required' => 'Das Feld Auftragsdatenverarbeitung ist erforderlich']);
+		$this->form_validation->set_rules('company', 'Firma', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('address', 'Adresse', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('city', 'Ort', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('last_name', 'Nachname', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('zip', 'PLZ', 'required|min_length[3]|max_length[20]');
+		$this->form_validation->set_rules('country', 'Land', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('email', 'Emaildresse', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('password', 'Passwort', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('password_confirm', 'Passwort bestätigen', 'required|matches[password]');
+		$this->form_validation->set_rules('trader', 'Trader', 'required', ['required' => 'Bitte Auftragsverarbeitungsvertrag, AGBs und Datenschutzerklärung zustimmen']);
 
 		if ($this->form_validation->run() == FALSE) {
 			$_SESSION['error'] = true;
@@ -117,12 +117,52 @@ class Welcome extends CI_Controller
 			$user_name = $this->input->post('name');
 			if ($this->UserModel->insertData($data)) {
 
+
+			$tariff = 'KOSTENLOS: in der Beta Testphase.
+Vor dem Ende der Beta Testphase werden Sie rechtzeitig informiert und haben dann die Wahl ein kostenpflichtiges Abo für EMAIL INVOICE abzuschließen oder die Nutzung von EMAIL INVOICE zu beenden.';
+			if ($user['timing'] == 2) {
+				$tariff = 'Monatstarif: 8 EURO / Monat zzgl. MwSt 
+Vertragslaufzeit 1 Monat: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 1 Monat.';
+			} else if ($user['timing'] == 3) {
+				$tariff = 'Jahrestarif: 90 EURO / Jahr zzgl. MwSt 
+Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 12 Monate.';
+			}
+				
+				
+				
 				$to = $email_id;
-				$subject = 'Email-Invoice.de Account Activation';
-				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to activate your account <br><br> %s", $user_name, base_url() . 'activate/account/' . $token);
+				$subject = 'EMAIL INVOICE Konto-Aktivierung';
+				$body = sprintf("Hallo %s, <br><br>Willkommen bei EMAIL INVOICE.<br>
+				Klicken Sie auf den folgenden Link, um Ihr Konto zu aktivieren <br><br> %s
+				<br><br>
+				Nach Ihrem erfolgreichen Login haben Sie die Möglichkeit ihren persönliche lexoffice Public API Schlüssel online einzugeben.<br>
+				Sie erhalten Ihre persönliche Emailadresse direkt nach der Eingabe und EMAIL INVOICE steht Ihnen in vollem Umfang zur Verfüfung.
+				<br>
+				Wo finde ich meinen persönliche lexoffice Public API Schlüssel?
+				<br>
+				https://app.lexoffice.de/addons/public-api
+				<br>
+				Noch Fragen? Unsere FAQ finden Sie auf unserer Homepage: https://email-invoice.de/
+				<br>
+				<br>
+				Ihr ausgewählter Tarif:<br>
+				$tariff
+				<br>
+				<br>
+				Mit freundlichem Gruß<br>
+				<br>
+				EMAIL INVOICE Support<br>
+				Ulmenstraße 17<br>
+				D-65527 Niedernhausen<br>
+				Tel.: +49 (0) 06127 706982-0<br>
+				USt-IdNr.: DE165054377<br>
+				Inh.: Dipl. Kfm. Sören Lange<br>
+				Email: hallo@email-invoice.de<br>
+				Internet: email-invoice.de
+				", $user_name, base_url() . 'activate/account/' . $token);
 
 				$this->sendMail($to, $subject, $body);
-				$_SESSION['activation_pending'] = "Alert! Check your email to activate your account";
+				$_SESSION['activation_pending'] = "Prüfen Sie Ihre Email, um Ihr Konto zu aktivieren.";
 				$this->loginView();
 			} else {
 				echo 'have a prob';
@@ -136,18 +176,30 @@ class Welcome extends CI_Controller
 		$res = $this->UserModel->activateAccount($token);
 		if ($res) {
 			$user = $this->UserModel->getByToken($token);
+
+			$tariff = 'KOSTENLOS: in der Beta Testphase
+Vor dem Ende der Beta Testphase werden Sie rechtzeitig informiert und haben dann die Wahl ein kostenpflichtiges Abo für EMAIL INVOICE abzuschließen oder die Nutzung von EMAIL INVOICE zu beenden.';
+			if ($user['timing'] == 2) {
+				$tariff = 'Monatstarif: 8 EURO / Monat zzgl. MwSt
+Vertragslaufzeit 1 Monat: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 1 Monat.';
+			} else if ($user['timing'] == 3) {
+				$tariff = 'Jahrestarif: 90 EURO / Jahr zzgl. MwSt
+Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 12 Monate.';
+			}
+
 			$to = 'lange@75marketing.net';
-			$subject = 'New User Activated on Email-Invoice.de';
+			$subject = 'Neuer Kunde bei EMAIL-INVOICE';
 			$details = 'Hi <b>Admin</b>,<br>
-			<p>A new user with following details signed up:</p>
+			<p>Ein neuer Kunde hat sich angemeldet:</p>
 			<b>Name:</b> : ' . $user['name'] . ' ' . $user['last_name'] . '<br>
 			<b>Company:</b> : ' . $user['company'] . '<br>
 			<b>Email:</b> : ' . $user['email'] . '<br>
-			<b>Tariff:</b> : ' . ($user['timing'] == 1 ? 'Monthly' : 'Annual');
-			$body = sprintf("Hi <b>Admin</b>, <br><br> A new user with following details signed up: <br><br> %s", $details);
+			<b>Tarif:</b> :<br>
+			' . $tariff;
+			$body = sprintf("%s", $details);
 			$this->sendMail($to, $subject, $body);
 
-			$_SESSION['activation_success'] = "Erfolgreich! Ihr Konto ist jetzt akti";
+			$_SESSION['activation_success'] = "Erfolgreich! Ihr Konto wurde erfolgreich aktivert.";
 			redirect('auth/signin');
 		}
 	}
@@ -174,7 +226,7 @@ class Welcome extends CI_Controller
 
 		$this->email->initialize($config);
 
-		$this->email->from('no-reply@email-invoice.de', 'Email-Invoice Support');
+		$this->email->from('no-reply@email-invoice.de', 'EMAIL INVOICE Support');
 		$this->email->to($to);
 		$this->email->subject($subject);
 		$this->email->message($body);
@@ -209,20 +261,32 @@ class Welcome extends CI_Controller
 				$this->UserModel->createCustomerOnLex($_SESSION['userId']);
 
 				$res = $this->UserModel->updLexDetail($data, $_SESSION['userId']);
-				$_SESSION['lex_detail_update_success'] = 'Lex API Key added';
+				$_SESSION['lex_detail_update_success'] = 'lexoffice Public API wurde hinzugefügt';
 
 				$to = $user['email'];
-				$subject = 'Email-Invoice.de LexOffice API Key Added';
-				$body = sprintf("Hi <b>%s</b>, <br><br> 
-				Your LexOffice API key has been added into our app. You can now share this email address <b>%s</b> with your suppliers.<br>
-				Any invoice that is sent by your supplier to <b>%s</b> will be uploaded by our app to your LexOffice dashboard. <br><br>
-				Regards, <br>
-				Email-Invoice.de Support", $user['name'], $user['lex_email'], $user['lex_email']);
+				$subject = 'EMAIL INVOICE: Ihr lexoffice Public API Schlüssel wurde erfolgreich hinzugefügt';
+				$body = sprintf("Hallo %s, <br><br> 
+				Ihr lexoffice Public API Schlüssel wurde erfolgreich hinzugefügt.<br>
+				Mit folgender EMAIL INVOICE Adresse können Sie ab jetzt Ihre Rechnungen empfangen und diese werden direkt
+				in Ihrem lexoffice Account hinterlegt:<br><br>
+				<b>%s</b>
+				<br><br><br>
+				Mit freundlichem Gruß<br>
+				<br>
+				EMAIL INVOICE Support<br>
+				Ulmenstraße 17<br>
+				D-65527 Niedernhausen<br>
+				Tel.: +49 (0) 6127 706982-0<br>
+				USt-IdNr.: DE165054377<br>
+				Inh.: Dipl. Kfm. Sören Lange<br>
+				Email: hallo@email-invoice.de<br>
+				Internet: email-invoice.de
+				", $user['name'], $user['lex_email'], $user['lex_email']);
 
 				$this->sendMail($to, $subject, $body);
 
 			} else {
-				$this->session->set_flashdata('lex_detail_update_error', 'Lex API key not valid');
+				$this->session->set_flashdata('lex_detail_update_error', 'Dieser Lexoffice API Key ist nicht gültig');
 			}
 			redirect("dashboard");
 		}
@@ -252,16 +316,28 @@ class Welcome extends CI_Controller
 			$update_pass_recover_code = $this->UserModel->updatePasswordRevoverCode($id, $data);
 			if ($update_pass_recover_code) {
 				$to = $email;
-				$subject = 'Forgot Password';
-				$body = sprintf("Hi <b>%s</b>, <br><br> Click the following link to reset your password <br><br> %s", $user_name, base_url() . 'user/revover/password/' . $token);
+				$subject = 'Passwort vergessen';
+				$body = sprintf("Hallo %s, <br><br> Klicken Sie auf den folgenden Link, um Ihr Passwort zurückzusetzen <br><br> %s
+				<br>
+				Mit freundlichem Gruß<br>
+				<br>
+				EMAIL INVOICE Support<br>
+				Ulmenstraße 17<br>
+				D-65527 Niedernhausen<br>
+				Tel.: +49 (0) 6127 / 706982-0<br>
+				USt-IdNr.: DE165054377<br>
+				Inh.: Dipl. Kfm. Sören Lange<br>
+				Email: hallo@email-invoice.de<br>
+				Internet: email-invoice.de
+				", $user_name, base_url() . 'user/revover/password/' . $token);
 
 				$this->sendMail($to, $subject, $body);
 
-				$_SESSION['code_sent'] = "Password reset instructions sent to your email";
+				$_SESSION['code_sent'] = "Anweisungen zum Zurücksetzen des Kennworts werden an Ihre Emailadresse gesendet";
 				$this->forgotpassword();
 			}
 		} else {
-			$_SESSION['no_email_found'] = "No email found";
+			$_SESSION['no_email_found'] = "Diese Emailadresse wurde nicht gefunden";
 			$this->forgotpassword();
 		}
 	}
@@ -295,7 +371,7 @@ class Welcome extends CI_Controller
 			$data = array('password' => sha1($password));
 			$res = $this->UserModel->updatePassword($id, $data);
 			if ($res) {
-				$_SESSION['password_updata'] = "Succes! Password updated successfully";
+				$_SESSION['password_updata'] = "Erfolgreich! Passwort erfolgreich aktualisiert";
 				$this->loginView();
 			}
 		}
