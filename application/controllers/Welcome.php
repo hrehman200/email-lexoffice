@@ -82,7 +82,9 @@ class Welcome extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('company', 'Firma', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('company', 'Firma', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Firma aus.'
+		]);
 		$this->form_validation->set_rules('address', 'Adresse', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('city', 'Ort', 'required|min_length[3]|max_length[100]');
 		$this->form_validation->set_rules('last_name', 'Nachname', 'required|min_length[3]|max_length[100]');
@@ -118,18 +120,18 @@ class Welcome extends CI_Controller
 			if ($this->UserModel->insertData($data)) {
 
 
-			$tariff = 'KOSTENLOS: in der Beta Testphase.
+				$tariff = 'KOSTENLOS: in der Beta Testphase.
 Vor dem Ende der Beta Testphase werden Sie rechtzeitig informiert und haben dann die Wahl ein kostenpflichtiges Abo für EMAIL INVOICE abzuschließen oder die Nutzung von EMAIL INVOICE zu beenden.';
-			if ($user['timing'] == 2) {
-				$tariff = 'Monatstarif: 8 EURO / Monat zzgl. MwSt 
+				if ($user['timing'] == 2) {
+					$tariff = 'Monatstarif: 8 EURO / Monat zzgl. MwSt 
 Vertragslaufzeit 1 Monat: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 1 Monat.';
-			} else if ($user['timing'] == 3) {
-				$tariff = 'Jahrestarif: 90 EURO / Jahr zzgl. MwSt 
+				} else if ($user['timing'] == 3) {
+					$tariff = 'Jahrestarif: 90 EURO / Jahr zzgl. MwSt 
 Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 12 Monate.';
-			}
-				
-				
-				
+				}
+
+
+
 				$to = $email_id;
 				$subject = 'EMAIL INVOICE Konto-Aktivierung';
 				$body = sprintf("Hallo %s, <br><br>Willkommen bei EMAIL INVOICE.<br>
