@@ -81,18 +81,36 @@ class Welcome extends CI_Controller
 
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[100]');
+		$this->form_validation->set_rules('name', 'Name', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Vorname aus.'
+		]);
 		$this->form_validation->set_rules('company', 'Firma', 'required|min_length[3]|max_length[100]', [
 			'required' => 'Bitte füllen Sie das Feld Firma aus.'
 		]);
-		$this->form_validation->set_rules('address', 'Adresse', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('city', 'Ort', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('last_name', 'Nachname', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('zip', 'PLZ', 'required|min_length[3]|max_length[20]');
-		$this->form_validation->set_rules('country', 'Land', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('email', 'Emaildresse', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('password', 'Passwort', 'required|min_length[3]|max_length[100]');
-		$this->form_validation->set_rules('password_confirm', 'Passwort bestätigen', 'required|matches[password]');
+		$this->form_validation->set_rules('address', 'Adresse', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Adresse aus.'
+		]);
+		$this->form_validation->set_rules('city', 'Ort', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Ort aus.'
+		]);
+		$this->form_validation->set_rules('last_name', 'Nachname', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Nachname aus.'
+		]);
+		$this->form_validation->set_rules('zip', 'PLZ', 'required|min_length[3]|max_length[20]', [
+			'required' => 'Bitte füllen Sie das Feld PLZ aus.'
+		]);
+		$this->form_validation->set_rules('country', 'Land', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Land aus.'
+		]);
+		$this->form_validation->set_rules('email', 'Emaildresse', 'required|valid_email|is_unique[users.email]|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Emailadresse aus.'
+		]);
+		$this->form_validation->set_rules('password', 'Passwort', 'required|min_length[3]|max_length[100]', [
+			'required' => 'Bitte füllen Sie das Feld Passwort aus.'
+		]);
+		$this->form_validation->set_rules('password_confirm', 'Passwort bestätigen', 'required|matches[password]', [
+			'required' => 'Bitte füllen Sie das Passwort bestätigen Firma aus.'
+		]);
 		$this->form_validation->set_rules('trader', 'Trader', 'required', ['required' => 'Bitte Auftragsverarbeitungsvertrag, AGBs und Datenschutzerklärung zustimmen']);
 
 		if ($this->form_validation->run() == FALSE) {
@@ -143,6 +161,7 @@ Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertrags
 				Wo finde ich meinen persönliche lexoffice Public API Schlüssel?
 				<br>
 				https://app.lexoffice.de/addons/public-api
+				<br>
 				<br>
 				Noch Fragen? Unsere FAQ finden Sie auf unserer Homepage: https://email-invoice.de/
 				<br>
