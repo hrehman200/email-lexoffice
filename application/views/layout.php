@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, height=device-height, initial-scale=1" name="viewport" />
 
-    <title>Email Invoice</title>
+    <title>EMAIL INVOICE - Buchhaltung wird jetzt noch einfacher</title>
 
     <link href="<?= base_url() ?>resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>resources/css/app.css" rel="stylesheet">
@@ -80,7 +80,7 @@
                                     aria-label="scrollable content" style="height: 100%; overflow: hidden scroll;">
                                     <div class="simplebar-content" style="padding: 0px;">
                                         <a class="sidebar-brand" href="javascript:;">
-                                            <span class="align-middle">Email Invoice</span>
+                                            <span class="align-middle">EMAIL INVOICE</span>
                                         </a>
 
                                         <ul class="sidebar-nav">
@@ -163,7 +163,7 @@
 
                 <div class="col-10 offset-1">
 
-                    <a class="sidebar-toggle js-sidebar-toggle logo_anchor float-start" href="http://email-invoice.de">
+                    <a class="sidebar-toggle js-sidebar-toggle logo_anchor float-start" href="https://email-invoice.de">
                         <img src="<?= base_url('resources/img/logo.png') ?>">
                     </a>
 

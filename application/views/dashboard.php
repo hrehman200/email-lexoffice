@@ -27,8 +27,8 @@
                                     <form method="post" action="<?= site_url('lex/detail') ?>">
 
                                           <div class="mb-3">
-                                                <label class="form-label">LexOffice API Key</label>
-                                                <input class="form-control form-control-lg" type="text" name="lexapikey" placeholder="Enter your lex api key" value="<?= $user['lex_api_key'] ?>" />
+                                                <label class="form-label">Bitte geben Sie hier Ihren persönlichen lexoffice Public API Schlüssel ein.</label>
+                                                <input class="form-control form-control-lg" type="text" name="lexapikey" placeholder="Ihr persönlicher lexoffice Public API Schlüssel" value="<?= $user['lex_api_key'] ?>" />
                                                 <?php
                                                 if ($_SESSION['lex_error']) {
                                                       echo form_error('lexapikey');
@@ -37,17 +37,24 @@
 
                                           </div>
                                           <div class="mb-3 <?= !$user['lex_api_key'] ? 'd-none' : ''?>">
-                                                <label class="form-label">LexOffice Email</label>
+                                                <label class="form-label">Ihre EMAIL INVOICE-Adresse lautet: </label>
                                                 <br>
                                                 <label><b><?= $user['lex_email'] ?></b></label>
                                                 <br>
-                                                <small>This is the email that you will share with your suppliers in order to get invoices directly to your LexOffice dashboard.</small>
+                                                <small>Diese EMAIL INVOICE Adresse geben Sie als Adresse für Rechnungen an alle Ihre Geschäftspartner weiter, die Ihnen Rechnungen stellen (Lieferanten, Dienstleister etc.). An diese Adresse gerichtete Rechnungen werden automatisch in Ihrem lexoffice-Account hinterlegt.</small>
                                                 <?php $id = $_SESSION['userId']; ?>
                                                 <input type="hidden" name="userid" value="<?= $id ?>">
                                           </div>
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>
+                                                <button type="submit" class="btn btn-lg btn-primary">Änderung speichern</button>      
                                           </div>
+                                          
+						<br>
+						<div style="background-color: #A9F5A9; border: 5px; ">Wo finde ich meinen lexoffice Public API Schl&uuml;ssel?<br />Hier k&ouml;nnen Sie Ihren eignen lexoffice Public API Schl&uuml;ssel erstellen:<br /><a title="https://app.lexoffice.de/addons/public-api" href="https://app.lexoffice.de/addons/public-api" target="_blank">https://app.lexoffice.de/addons/public-api</a>.
+						</div>
+                                          
+                                          
+                                          
                                     </form>
                               </div>
                         </div>
