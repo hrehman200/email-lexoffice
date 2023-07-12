@@ -3,7 +3,7 @@
             <div class="d-table-cell align-middle">
 
                   <div class="text-center mt-4">
-                        <h1 class="h2">Login</h1>
+                        <h1 class="h2">EMAIL INVOICE Login</h1>
                   </div>
 
                   <?php
@@ -74,7 +74,7 @@
                                     <form method="post" action="<?= site_url('auth/signin') ?>">
 
                                           <div class="mb-3">
-                                                <label class="form-label">Ihre E-Maildresse</label>
+                                                <label class="form-label">Ihre Emaildresse</label>
                                                 <input class="form-control form-control-lg" type="email" name="email"
                                                       placeholder="Ihre E-Maildresse" value="<?php if ($_SESSION['login_error']) {
                                                             echo set_value('email');
@@ -99,7 +99,7 @@
                                                 ?>
 
                                           </div>
-                                          <a href="<?= base_url('forgotpassword') ?>">Forgot password?</a>
+                                          <a href="<?= base_url('forgotpassword') ?>">Passwort vergessen?</a>
                                           <div class="text-center mt-3">
                                                 <button type="submit" class="btn btn-lg btn-color">Login</button>
                                           </div>

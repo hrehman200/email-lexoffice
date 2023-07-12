@@ -3,10 +3,11 @@
             <div class="d-table-cell align-middle">
 
                   <div class="text-center mt-4">
-                        <h1 class="h2">Anmelden</h1>
+                        <h1 class="h2">EMAIL INVOICE Registrieren</h1>
                         <p class="lead">
-                              Melden Sie sich an, indem Sie Ihre Daten eingeben.
+                              Buchhaltung wird jetzt noch einfacher
                         </p>
+                        
                   </div>
 
                   <div class="card">
@@ -113,9 +114,9 @@
                                           </div>
 
                                           <div class="mb-3">
-                                                <label class="form-label">Ihre E-Maildresse</label>
+                                                <label class="form-label">Ihre Emaildresse</label>
                                                 <input class="form-control form-control-lg" type="email" name="email"
-                                                      placeholder="Ihre E-Maildresse" value="<?php if ($_SESSION['error']) {
+                                                      placeholder="Ihre Emaildresse" value="<?php if ($_SESSION['error']) {
                                                             echo set_value('email');
                                                       } ?>" />
 
@@ -156,7 +157,8 @@
                                                 <input class="form-check-input" type="checkbox" value="1" name="trader"
                                                       id="flexCheckDefault">
                                                 <label class="form-check-label" for="flexCheckDefault">
-                                                      Ich akzeptiere den Vertrag zur Auftragsdatenverarbeitung
+                                                      Ich akzeptiere den Vertrag zur <a href="https://www.75marketing.net/auftragsdatenverarbeitung/" target="_blank">Auftragsdatenverarbeitung</a> und habe die <a href="https://www.75marketing.net/agb/" target="_blank">AGB</a> und <a href="/datenschutz/" target="_blank">Datenschutzerklärung</a> gelesen und stimme zu.
+                                                      
                                                 </label>
                                                 <?php
                                                 if ($_SESSION['error']) {
@@ -167,17 +169,32 @@
 
                                           <div>
                                                 <label class="form-check form-check-inline mt-3">
-                                                      <input class="form-check-input" type="radio" name="timing"
+                                                <input class="form-check-input" type="radio" name="timing"
                                                             value="1" checked >
                                                       <span class="form-check-label">
-                                                            Monatstarif
+                                                              <b>KOSTENLOS:</b> in der Beta Testphase<br>
+                                                            Vor dem Ende der Beta Testphase werden Sie rechtzeitig informiert und haben dann die Wahl ein kostenpflichtiges Abo für EMAIL INVOICE abzuschließen oder die Nutzung von EMAIL INVOICE zu beenden.
                                                       </span>
                                                 </label>
+                                            
+                                            
+                                                <label class="form-check form-check-inline mt-3">
+                                                      <input class="form-check-input" type="radio" name="timing"
+                                                            value="2" >
+                                                      <span class="form-check-label">
+                                                              <b>Monatstarif</b>: 8 EURO / Monat zzgl. MwSt<br>
+                                                            Vertragslaufzeit 1 Monat: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 1 Monat.
+                                                      </span>
+                                                </label>
+                                                <br>
+                                                <br>
+                                                
                                                 <label class="form-check form-check-inline">
                                                       <input class="form-check-input" type="radio" name="timing"
-                                                            value="2">
+                                                            value="3">
                                                       <span class="form-check-label">
-                                                            Jahrestarif
+                                                              <b>Jahrestarif</b>: 90 EURO / Jahr zzgl. MwSt<br>
+                                                            Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertragslaufzeit nicht gekündigt sein, verlängert sich der Vertrag automatisch um 12 Monate.
                                                       </span>
                                                 </label>
                                           </div>

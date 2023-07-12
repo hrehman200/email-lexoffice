@@ -3,7 +3,7 @@
             <div class="d-table-cell align-middle">
 
                   <div class="text-center mt-4">
-                        <h1 class="h2">Recover Password</h1>
+                        <h1 class="h2">Passwort wiederherstellen</h1>
                   </div>
                   <?php 
                         if (isset($_SESSION['code_sent'])) {
@@ -29,7 +29,7 @@
                                                 <label class="form-label">Ihre E-Maildresse</label>
                                                 <input type="email" name="email" required="" class="form-control">
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-color">Send Mail</button>
+                                                <button type="submit" class="btn btn-lg btn-color">senden</button>
                                           </div>
                                     </form>
                               </div>
