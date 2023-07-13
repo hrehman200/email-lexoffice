@@ -182,7 +182,7 @@ Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertrags
 				Internet: email-invoice.de
 				", $user_name, base_url() . 'activate/account/' . $token);
 
-				$body = $this->load->view('emails/newuser.html', [
+				$body = $this->load->view('emails/newuser', [
 					'activation_link' => base_url() . 'activate/account/' . $token,
 					'tariff' => $tariff
 				], true);
