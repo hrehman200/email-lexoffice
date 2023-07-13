@@ -182,6 +182,11 @@ Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertrags
 				Internet: email-invoice.de
 				", $user_name, base_url() . 'activate/account/' . $token);
 
+				$body = $this->load->view('emails/newuser.html', [
+					'activation_link' => base_url() . 'activate/account/' . $token,
+					'tariff' => $tariff
+				], true);
+
 				$this->sendMail($to, $subject, $body);
 				$_SESSION['activation_pending'] = "Prüfen Sie Ihre Email, um Ihr Konto zu aktivieren.";
 				$this->loginView();
@@ -304,11 +309,37 @@ Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertrags
 				Internet: email-invoice.de
 				", $user['name'], $user['lex_email'], $user['lex_email']);
 
+				$body = $this->load->view('emails/account_activate', [
+					'username' => $user['name'],
+					'lex_email' => $user['lex_email']
+				], true);
+
 				$this->sendMail($to, $subject, $body);
 
 			} else {
 				$this->session->set_flashdata('lex_detail_update_error', 'Dieser Lexoffice API Key ist nicht gültig');
 			}
+			redirect("dashboard");
+		}
+	}
+
+	public function secondEmail()
+	{
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules('second_email', 'Second Email', 'required|valid_email|is_unique[users.email]');
+
+		if ($this->form_validation->run() == FALSE) {
+			$this->session->set_flashdata('msg_type', 'danger');
+			$this->session->set_flashdata('msg', 'Invalid email');
+			$this->dashboard();
+		} else {
+			$second_email = $this->input->post('second_email');
+
+			$this->UserModel->updateSecondEmail($_SESSION['userId'], $second_email);
+
+			$this->session->set_flashdata('msg_type', 'success');
+			$this->session->set_flashdata('msg', 'Second email updated');
+			
 			redirect("dashboard");
 		}
 	}
