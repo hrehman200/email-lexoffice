@@ -73,7 +73,10 @@ class UserModel extends CI_Model
 
     function getByLexEmail($lex_email)
     {
-        $user = $this->db->get_where('users', ['lex_email' => $lex_email])->result_array()[0];
+        $user = $this->db->where('lex_email', $lex_email)
+            ->or_where('second_email', $lex_email)
+            ->get('users')
+            ->result_array()[0];
         return $user;
     }
 
@@ -234,6 +237,16 @@ class UserModel extends CI_Model
     function updatePassword($id,$data){
         $this->db->where('id', $id);
         $res = $this->db->update('users', $data);
+        if ($res) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function updateSecondEmail($id, $second_email){
+        $this->db->where('id', $id);
+        $res = $this->db->update('users', ['second_email' => $second_email]);
         if ($res) {
             return true;
         } else {

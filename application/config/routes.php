@@ -65,4 +65,5 @@ $route['forgotpassword'] = 'welcome/forgotpassword';
 $route['recover/password'] = 'welcome/revoverPassword';
 $route['user/revover/password/(:any)'] = 'welcome/passwordRecoverView/$1';
 $route['update/password'] = 'welcome/updatePassword';
+$route['update/second_email'] = 'welcome/secondEmail';
 

@@ -56,6 +56,25 @@
                                           
                                           
                                     </form>
+
+                                    <hr class="mt-5 mb-5" />
+
+
+                                    <form method="post" action="<?= site_url('update/second_email') ?>">
+                                          <?php if (strlen($_SESSION['msg'])) { ?>
+                                                <div class="alert alert-<?=$_SESSION['msg_type']?>">
+                                                      <div class="alert-message"><?= $_SESSION['msg'] ?></div>
+                                                </div>
+                                          <?php } ?>
+                                          <div class="mb-3">
+                                                <label class="form-label">Add second email</label>
+                                                <input class="form-control form-control-lg" type="text" name="second_email" placeholder="Second Email" value="<?= $user['second_email'] ?>" />
+                                          </div>
+                                          <div class="text-center mt-3">
+                                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>      
+                                          </div>
+                                    </form>
+
                               </div>
                         </div>
                   </div>
