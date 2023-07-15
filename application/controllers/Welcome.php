@@ -338,7 +338,7 @@ Vertragslaufzeit 1 Jahr: sollte der Vertrag bis 4 Wochen vor Ablauf der Vertrags
 			$this->UserModel->updateSecondEmail($_SESSION['userId'], $second_email);
 
 			$this->session->set_flashdata('msg_type', 'success');
-			$this->session->set_flashdata('msg', 'Second email updated');
+			$this->session->set_flashdata('msg', 'Änderung wurde gespeichert');
 			
 			redirect("dashboard");
 		}

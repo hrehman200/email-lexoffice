@@ -368,7 +368,7 @@
                               </tr>
                               <tr>
                                 <td style="padding:0;Margin:0;padding-right:15px;font-size:0px" align="center"><img
-                                    class="adapt-img" src="https://email-invoice.de/wp-content/uploads/tax-7630744.png"
+                                    class="adapt-img" src="https://email-invoice.de/wp-content/uploads/Eingangsrechnungen-verwalten.png"
                                     alt
                                     style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic"
                                     width="370"></td>

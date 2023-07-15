@@ -50,7 +50,7 @@
                                           </div>
                                           
 						<br>
-						<div style="background-color: #A9F5A9; border: 5px; ">Wo finde ich meinen lexoffice Public API Schl&uuml;ssel?<br />Hier k&ouml;nnen Sie Ihren eignen lexoffice Public API Schl&uuml;ssel erstellen:<br /><a title="https://app.lexoffice.de/addons/public-api" href="https://app.lexoffice.de/addons/public-api" target="_blank">https://app.lexoffice.de/addons/public-api</a>.
+						<div class="alert alert-success" style="background-color: #fffcc8;">Wo finde ich meinen lexoffice Public API Schl&uuml;ssel?<br />Hier k&ouml;nnen Sie Ihren eignen lexoffice Public API Schl&uuml;ssel erstellen:<br /><a title="https://app.lexoffice.de/addons/public-api" href="https://app.lexoffice.de/addons/public-api" target="_blank">https://app.lexoffice.de/addons/public-api</a>.
 						</div>
                                           
                                           
@@ -67,11 +67,13 @@
                                                 </div>
                                           <?php } ?>
                                           <div class="mb-3">
-                                                <label class="form-label">Add second email</label>
-                                                <input class="form-control form-control-lg" type="text" name="second_email" placeholder="Second Email" value="<?= $user['second_email'] ?>" />
+                                                <label class="form-label">
+                                                Wenn Sie Ihre Rechnungen über eine eigene Mailadresse empfangen möchten (z.B. invoice@ihrefirma.de oder rechnung@ihrefirma.de) und diese dann serverseitig (nicht per Outlook) an Ihre von uns zugeteilte EMAIL INVOICE-Adresse (siehe oben) weiterleiten, müssen Sie hier die Mailadresse angeben, an die Sie sich Rechnungen von Ihren Rechnungsstellern schicken lassen, damit das System diese korrekt zuordnen kann.
+                                                </label>
+                                                <input class="form-control form-control-lg" type="text" name="second_email" placeholder="invoice@ihrefirma.de" value="<?= $user['second_email'] ?>" />
                                           </div>
                                           <div class="text-center mt-3">
-                                                <button type="submit" class="btn btn-lg btn-primary">Submit</button>      
+                                                <button type="submit" class="btn btn-lg btn-primary">Speichern</button>      
                                           </div>
                                     </form>
 
