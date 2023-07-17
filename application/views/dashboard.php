@@ -39,7 +39,7 @@
                                           <div class="mb-3 <?= !$user['lex_api_key'] ? 'd-none' : ''?>">
                                                 <label class="form-label">Ihre EMAIL INVOICE-Adresse lautet: </label>
                                                 <br>
-                                                <label><b><?= $user['lex_email'] ?></b></label>
+                                                <label class="alert alert-secondary" style="font-family:Courier;"><?= $user['lex_email'] ?></label>
                                                 <br>
                                                 <small>Diese EMAIL INVOICE Adresse geben Sie als Adresse für Rechnungen an alle Ihre Geschäftspartner weiter, die Ihnen Rechnungen stellen (Lieferanten, Dienstleister etc.). An diese Adresse gerichtete Rechnungen werden automatisch in Ihrem lexoffice-Account hinterlegt.</small>
                                                 <?php $id = $_SESSION['userId']; ?>
